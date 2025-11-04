@@ -207,7 +207,7 @@ export class StatusBarController implements Disposable {
 				: undefined,
 			showPullRequests && options?.pr === undefined
 				? this.getPullRequest(commit, { timeout: timeout })
-				: options?.pr ?? undefined,
+				: (options?.pr ?? undefined),
 		]);
 
 		if (pr != null) {

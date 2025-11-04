@@ -238,11 +238,11 @@ export class PushGitCommand extends QuickCommand<State> {
 															branch?.getRemoteName()
 																? ` on ${branch.getRemoteName()}`
 																: ''
-													  }`
+														}`
 													: ''
 											}`,
 										}),
-								  ]
+									]
 								: [],
 							DirectiveQuickPickItem.create(Directive.Cancel, true, {
 								label: `Cancel ${this.title}`,
@@ -342,7 +342,7 @@ export class PushGitCommand extends QuickCommand<State> {
 							status?.state.ahead
 								? ` commits up to and including ${GitReference.toString(state.reference, {
 										label: false,
-								  })}`
+									})}`
 								: ''
 						}${status?.upstream ? ` to ${GitBranch.getRemote(status.upstream)}` : ''}`;
 					} else {
@@ -361,7 +361,7 @@ export class PushGitCommand extends QuickCommand<State> {
 											label: this.title,
 											detail: `Will push${pushDetails}`,
 										}),
-								  ]),
+									]),
 							FlagsQuickPickItem.create<Flags>(state.flags, ['--force'], {
 								label: `Force ${this.title}${useForceWithLease ? ' (with lease)' : ''}`,
 								description: `--force${useForceWithLease ? '-with-lease' : ''}`,
@@ -369,7 +369,7 @@ export class PushGitCommand extends QuickCommand<State> {
 									status != null && status.state.behind > 0
 										? `, overwriting ${pluralize('commit', status.state.behind)}${
 												status?.upstream ? ` on ${GitBranch.getRemote(status.upstream)}` : ''
-										  }`
+											}`
 										: ''
 								}`,
 							}),
@@ -380,7 +380,7 @@ export class PushGitCommand extends QuickCommand<State> {
 									detail: `Cannot push; ${GitReference.toString(branch)} is behind${
 										status?.upstream ? ` ${GitBranch.getRemote(status.upstream)}` : ''
 									} by ${pluralize('commit', status.state.behind)}`,
-							  })
+								})
 							: undefined,
 					);
 

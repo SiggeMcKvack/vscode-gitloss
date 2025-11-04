@@ -1551,7 +1551,7 @@ export class Git {
 		try {
 			const bytes = await workspace.fs.readFile(Uri.file(joinPaths(repoPath, '.git', ...pathParts)));
 			let contents = textDecoder.decode(bytes);
-			contents = options?.trim ?? true ? contents.trim() : contents;
+			contents = (options?.trim ?? true) ? contents.trim() : contents;
 
 			if (options?.numeric) {
 				const number = Number.parseInt(contents, 10);

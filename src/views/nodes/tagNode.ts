@@ -23,7 +23,12 @@ export class TagNode extends ViewRefNode<TagsView | RepositoriesView, GitTagRefe
 		return `${RepositoryNode.getId(repoPath)}${this.key}(${name})`;
 	}
 
-	constructor(uri: GitUri, view: TagsView | RepositoriesView, parent: ViewNode, public readonly tag: GitTag) {
+	constructor(
+		uri: GitUri,
+		view: TagsView | RepositoriesView,
+		parent: ViewNode,
+		public readonly tag: GitTag,
+	) {
 		super(uri, view, parent);
 	}
 
@@ -84,7 +89,7 @@ export class TagNode extends ViewRefNode<TagsView | RepositoriesView, GitTagRefe
 			this.tag.commitDate != null && this.tag.date !== this.tag.commitDate
 				? `\n${this.tag.formatCommitDateFromNow()} (${this.tag.formatCommitDate(
 						Container.instance.TagDateFormatting.dateFormat,
-				  )})`
+					)})`
 				: ''
 		}`;
 

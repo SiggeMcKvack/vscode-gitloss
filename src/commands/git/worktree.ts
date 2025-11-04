@@ -356,7 +356,7 @@ export class WorktreeGitCommand extends QuickCommand<State> {
 				: Uri.joinPath(
 						state.uri,
 						...(state.createBranch ?? state.reference.name).replace(/\\/g, '/').split('/'),
-				  );
+					);
 
 			try {
 				await state.repo.createWorktree(uri, {
@@ -541,7 +541,7 @@ export class WorktreeGitCommand extends QuickCommand<State> {
 								},
 								pickedUri,
 							),
-					  ]
+						]
 					: []),
 			] as FlagsQuickPickItem<CreateFlags, Uri>[],
 			context,

@@ -32,8 +32,8 @@ export class MergeConflictCurrentChangesNode extends ViewNode<ViewsWithCommits |
 			commit != null ? ` (${GitReference.toString(commit, { expand: false, icon: false })})` : ' (HEAD)'
 		}`;
 		item.iconPath = this.view.config.avatars
-			? (await commit?.getAvatarUri({ defaultStyle: this.view.container.config.defaultGravatarsStyle })) ??
-			  new ThemeIcon('diff')
+			? ((await commit?.getAvatarUri({ defaultStyle: this.view.container.config.defaultGravatarsStyle })) ??
+				new ThemeIcon('diff'))
 			: new ThemeIcon('diff');
 
 		const markdown = new MarkdownString(
@@ -51,7 +51,7 @@ export class MergeConflictCurrentChangesNode extends ViewNode<ViewsWithCommits |
 								// messageAutolinks: true,
 								messageIndent: 4,
 							},
-					  )}`
+						)}`
 					: ''
 			}`,
 			true,

@@ -438,7 +438,7 @@ export class GitCommit implements GitRevisionReference {
 					this.file.uri,
 					editorLine,
 					ref ?? (this.sha === GitRevision.uncommitted ? undefined : this.sha),
-			  )
+				)
 			: Promise.resolve(undefined);
 	}
 

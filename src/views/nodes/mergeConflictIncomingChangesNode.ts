@@ -37,8 +37,8 @@ export class MergeConflictIncomingChangesNode extends ViewNode<ViewsWithCommits 
 				: ` (${GitReference.toString(this.status.HEAD, { expand: false, icon: false })})`
 		}`;
 		item.iconPath = this.view.config.avatars
-			? (await commit?.getAvatarUri({ defaultStyle: this.view.container.config.defaultGravatarsStyle })) ??
-			  new ThemeIcon('diff')
+			? ((await commit?.getAvatarUri({ defaultStyle: this.view.container.config.defaultGravatarsStyle })) ??
+				new ThemeIcon('diff'))
 			: new ThemeIcon('diff');
 
 		const markdown = new MarkdownString(
@@ -56,14 +56,14 @@ export class MergeConflictIncomingChangesNode extends ViewNode<ViewsWithCommits 
 											// messageAutolinks: true,
 											messageIndent: 4,
 										},
-								  )}`
+									)}`
 								: this.status.type === 'rebase'
-								? `\n\n${GitReference.toString(this.status.steps.current.commit, {
-										capitalize: true,
-										label: false,
-								  })}`
-								: `\n\n${GitReference.toString(this.status.HEAD, { capitalize: true, label: false })}`
-					  }`
+									? `\n\n${GitReference.toString(this.status.steps.current.commit, {
+											capitalize: true,
+											label: false,
+										})}`
+									: `\n\n${GitReference.toString(this.status.HEAD, { capitalize: true, label: false })}`
+						}`
 					: ''
 			}`,
 			true,

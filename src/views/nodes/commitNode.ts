@@ -98,8 +98,8 @@ export class CommitNode extends ViewRefNode<ViewsWithCommits | FileHistoryView, 
 		item.iconPath = this.unpublished
 			? new ThemeIcon('arrow-up', new ThemeColor(Colors.UnpublishedCommitIconColor))
 			: this.view.config.avatars
-			? await this.commit.getAvatarUri({ defaultStyle: this.view.container.config.defaultGravatarsStyle })
-			: new ThemeIcon('git-commit');
+				? await this.commit.getAvatarUri({ defaultStyle: this.view.container.config.defaultGravatarsStyle })
+				: new ThemeIcon('git-commit');
 		// item.tooltip = this.tooltip;
 
 		return item;

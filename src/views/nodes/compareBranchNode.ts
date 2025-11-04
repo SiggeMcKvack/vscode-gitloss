@@ -89,7 +89,7 @@ export class CompareBranchNode extends ViewNode<BranchesView | CommitsView | Rep
 						comparison: behind,
 						direction: 'behind',
 						files: {
-							ref1: this.compareWithWorkingTree ? '' : mergeBase ?? behind.ref1,
+							ref1: this.compareWithWorkingTree ? '' : (mergeBase ?? behind.ref1),
 							ref2: behind.ref2,
 							query: this.getBehindFilesQuery.bind(this),
 						},

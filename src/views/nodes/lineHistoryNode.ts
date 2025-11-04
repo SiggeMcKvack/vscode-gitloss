@@ -81,7 +81,7 @@ export class LineHistoryNode
 				? this.view.container.git.getLogRefsOnly(this.uri.repoPath!, {
 						limit: 0,
 						ref: range,
-				  })
+					})
 				: undefined,
 		]);
 
@@ -144,7 +144,7 @@ export class LineHistoryNode
 									getBranchAndTagTips: getBranchAndTagTips,
 									selection: selection,
 									unpublished: unpublishedCommits?.has(c.ref),
-							  })
+								})
 							: undefined,
 					),
 					this,

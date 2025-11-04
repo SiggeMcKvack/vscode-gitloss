@@ -103,8 +103,8 @@ export abstract class BlameAnnotationProviderBase extends AnnotationProviderBase
 				const lookup = Array.isArray(lookupTable)
 					? lookupTable
 					: date.getTime() < coldThresholdTimestamp
-					? lookupTable.cold
-					: lookupTable.hot;
+						? lookupTable.cold
+						: lookupTable.hot;
 
 				const time = date.getTime();
 				let index = 0;

@@ -144,10 +144,13 @@ export class RebaseEditorProvider implements CustomTextEditorProvider, Disposabl
 
 		let associations = inspection?.globalValue;
 		if (Array.isArray(associations)) {
-			associations = associations.reduce((accumulator, current) => {
-				accumulator[current.filenamePattern] = current.viewType;
-				return accumulator;
-			}, Object.create(null) as Record<string, string>);
+			associations = associations.reduce(
+				(accumulator, current) => {
+					accumulator[current.filenamePattern] = current.viewType;
+					return accumulator;
+				},
+				Object.create(null) as Record<string, string>,
+			);
 		}
 
 		if (associations == null) {

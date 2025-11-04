@@ -60,7 +60,7 @@ export namespace CommitPicker {
 							}),
 						),
 						...(log?.hasMore ? [DirectiveQuickPickItem.create(Directive.LoadMore)] : []),
-				  ];
+					];
 		}
 
 		async function loadMore() {
@@ -226,7 +226,8 @@ export namespace StashPicker {
 		}
 
 		if (stash == null || quickpick.items.length <= (options?.showOtherReferences?.length ?? 0)) {
-			quickpick.placeholder = stash == null ? 'No stashes found' : options?.empty ?? `No matching stashes found`;
+			quickpick.placeholder =
+				stash == null ? 'No stashes found' : (options?.empty ?? `No matching stashes found`);
 			quickpick.items = [DirectiveQuickPickItem.create(Directive.Cancel)];
 		}
 

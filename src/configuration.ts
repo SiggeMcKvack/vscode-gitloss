@@ -311,8 +311,8 @@ type PathValue<T, P extends Path<T>> = P extends `${infer Key}.${infer Rest}`
 			: never
 		: never
 	: P extends keyof T
-	? T[P]
-	: never;
+		? T[P]
+		: never;
 
 type ConfigPath = Path<Config>;
 type ConfigPathValue<P extends ConfigPath> = PathValue<Config, P>;

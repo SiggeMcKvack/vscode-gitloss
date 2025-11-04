@@ -1479,8 +1479,8 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 						options?.ordering === 'date'
 							? 'committer-date'
 							: options?.ordering === 'author-date'
-							? 'author-date'
-							: undefined,
+								? 'author-date'
+								: undefined,
 				},
 			);
 			if (result == null) return undefined;
@@ -1822,8 +1822,8 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 					);
 					const foundFile = isFolderGlob(relativePath)
 						? undefined
-						: files?.find(f => f.path === relativePath) ??
-						  new GitFileChange(
+						: (files?.find(f => f.path === relativePath) ??
+							new GitFileChange(
 								repoPath,
 								relativePath,
 								GitFileIndexStatus.Modified,
@@ -1832,7 +1832,7 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 								commit.changedFiles === 1
 									? { additions: commit.additions ?? 0, deletions: commit.deletions ?? 0, changes: 0 }
 									: undefined,
-						  );
+							));
 
 					c = new GitCommit(
 						this.container,
@@ -2076,7 +2076,7 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 								relativePath,
 								result.values[offset + skip - 1]?.oid ?? GitRevision.deletedOrMissing,
 							),
-					  );
+						);
 			if (current == null || current.sha === GitRevision.deletedOrMissing) return undefined;
 
 			return {

@@ -189,7 +189,7 @@ export class SwitchGitCommand extends QuickCommand<State> {
 						state.createBranch
 							? `create and switch to a new branch named ${
 									state.createBranch
-							  } from ${GitReference.toString(state.reference)}`
+								} from ${GitReference.toString(state.reference)}`
 							: `switch to ${GitReference.toString(state.reference)}`
 					} in ${
 						state.repos.length === 1

@@ -79,7 +79,7 @@ export class ExternalDiffCommand extends Command {
 						? {
 								uri: r.resourceUri,
 								staged: (r as ScmResource).resourceGroupType === ScmResourceGroupType.Index,
-						  }
+							}
 						: undefined,
 				);
 			}

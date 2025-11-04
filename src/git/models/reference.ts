@@ -66,8 +66,8 @@ export namespace GitRevision {
 		if (!ref) return strings.working ?? '';
 		if (isUncommitted(ref)) {
 			return isUncommittedStaged(ref)
-				? strings.uncommittedStaged ?? 'Index'
-				: strings.uncommitted ?? 'Working Tree';
+				? (strings.uncommittedStaged ?? 'Index')
+				: (strings.uncommitted ?? 'Working Tree');
 		}
 
 		if (GitRevision.isRange(ref)) return ref;

@@ -115,7 +115,7 @@ function getExtensionConfig(target, mode, env) {
 									keepNames: true,
 									target: 'es2020',
 								},
-						  }
+							}
 						: {
 								compress: {
 									drop_debugger: true,
@@ -128,7 +128,7 @@ function getExtensionConfig(target, mode, env) {
 									keep_classnames: true,
 									module: true,
 								},
-						  },
+							},
 				),
 			],
 			splitChunks:
@@ -141,7 +141,7 @@ function getExtensionConfig(target, mode, env) {
 								default: false,
 								vendors: false,
 							},
-					  },
+						},
 		},
 		externals: {
 			vscode: 'commonjs vscode',
@@ -166,7 +166,7 @@ function getExtensionConfig(target, mode, env) {
 										),
 									),
 								},
-						  }
+							}
 						: {
 								loader: 'ts-loader',
 								options: {
@@ -177,7 +177,7 @@ function getExtensionConfig(target, mode, env) {
 									experimentalWatchApi: true,
 									transpileOnly: true,
 								},
-						  },
+							},
 				},
 			],
 		},
@@ -225,7 +225,7 @@ function getWebviewsConfig(mode, env) {
 						],
 						dangerouslyAllowCleanPatternsOutsideProject: true,
 						dry: false,
-				  }
+					}
 				: undefined,
 		),
 		new ForkTsCheckerPlugin({
@@ -310,7 +310,7 @@ function getWebviewsConfig(mode, env) {
 									// keepNames: true,
 									target: 'es2020',
 								},
-						  }
+							}
 						: {
 								compress: {
 									drop_debugger: true,
@@ -325,7 +325,7 @@ function getWebviewsConfig(mode, env) {
 									// keep_classnames: true,
 									module: true,
 								},
-						  },
+							},
 				),
 				new ImageMinimizerPlugin({
 					deleteOriginalAssets: true,
@@ -348,7 +348,7 @@ function getWebviewsConfig(mode, env) {
 									target: 'es2020',
 									tsconfigRaw: resolveTSConfig(path.join(basePath, 'tsconfig.json')),
 								},
-						  }
+							}
 						: {
 								loader: 'ts-loader',
 								options: {
@@ -356,7 +356,7 @@ function getWebviewsConfig(mode, env) {
 									experimentalWatchApi: true,
 									transpileOnly: true,
 								},
-						  },
+							},
 				},
 				{
 					test: /\.scss$/,
@@ -488,7 +488,7 @@ function getHtmlPlugin(name, plus, mode, env) {
 						removeStyleLinkTypeAttributes: true,
 						keepClosingSlash: true,
 						minifyCSS: true,
-				  }
+					}
 				: false,
 	});
 }

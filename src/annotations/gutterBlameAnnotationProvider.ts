@@ -202,7 +202,7 @@ export class GutterBlameAnnotationProvider extends BlameAnnotationProviderBase {
 		const highlightDecorationRanges = filterMap(blame.lines, l =>
 			l.sha === sha
 				? // editor lines are 0-based
-				  this.editor.document.validateRange(new Range(l.line - 1, 0, l.line - 1, Number.MAX_SAFE_INTEGER))
+					this.editor.document.validateRange(new Range(l.line - 1, 0, l.line - 1, Number.MAX_SAFE_INTEGER))
 				: undefined,
 		);
 

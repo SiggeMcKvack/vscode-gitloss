@@ -201,10 +201,10 @@ export class RebaseGitCommand extends QuickCommand<State> {
 						log == null
 							? `No commits found on ${GitReference.toString(context.selectedBranchOrTag, {
 									icon: false,
-							  })}`
+								})}`
 							: `Choose a commit to rebase ${GitReference.toString(context.destination, {
 									icon: false,
-							  })} onto`,
+								})} onto`,
 					picked: state.reference?.ref,
 				});
 				if (result === StepResult.Break) continue;

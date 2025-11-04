@@ -172,9 +172,12 @@ class UriEventHandler extends EventEmitter<Uri> implements UriHandler {
 }
 
 function parseQuery(uri: Uri): Record<string, string> {
-	return uri.query.split('&').reduce((prev, current) => {
-		const queryString = current.split('=');
-		prev[queryString[0]] = queryString[1];
-		return prev;
-	}, {} as Record<string, string>);
+	return uri.query.split('&').reduce(
+		(prev, current) => {
+			const queryString = current.split('=');
+			prev[queryString[0]] = queryString[1];
+			return prev;
+		},
+		{} as Record<string, string>,
+	);
 }

@@ -165,10 +165,10 @@ export namespace ReferencePicker {
 			include && ReferencesQuickPickIncludes.BranchesAndTags
 				? ['branches', 'tags']
 				: include && ReferencesQuickPickIncludes.Branches
-				? ['branches']
-				: include && ReferencesQuickPickIncludes.Tags
-				? ['tags']
-				: [],
+					? ['branches']
+					: include && ReferencesQuickPickIncludes.Tags
+						? ['tags']
+						: [],
 			{
 				buttons: [QuickCommandButtons.RevealInSideBar],
 				filter: filter,

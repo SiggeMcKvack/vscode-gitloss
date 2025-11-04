@@ -150,7 +150,7 @@ export class GutterChangesAnnotationProvider extends AnnotationProviderBase<Chan
 								this.editor.document.getText(),
 							),
 							this.container.git.getDiffForFile(this.trackedDocument.uri, ref1, ref2),
-					  ]
+						]
 					: [this.container.git.getDiffForFile(this.trackedDocument.uri, ref1, ref2)],
 			)
 		).filter(<T>(d?: T): d is T => Boolean(d));
@@ -246,8 +246,8 @@ export class GutterChangesAnnotationProvider extends AnnotationProviderBase<Chan
 							decorationType: (state === 'added'
 								? Decorations.changesLineAddedAnnotation
 								: state === 'removed'
-								? Decorations.changesLineDeletedAnnotation
-								: Decorations.changesLineChangedAnnotation)!,
+									? Decorations.changesLineDeletedAnnotation
+									: Decorations.changesLineChangedAnnotation)!,
 							rangesOrOptions: [{ range: range }],
 						};
 						decorationsMap.set(state, decoration);

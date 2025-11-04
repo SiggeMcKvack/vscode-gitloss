@@ -512,11 +512,14 @@ export class SubscriptionService implements Disposable {
 		}
 
 		// Check twice a day to ensure we check in at least once a day
-		this._dailyCheckInTimer = setInterval(() => {
-			if (this._lastCheckInDate == null || this._lastCheckInDate.getDate() !== new Date().getDate()) {
-				void this.ensureSession(false, true);
-			}
-		}, 1000 * 60 * 60 * 12);
+		this._dailyCheckInTimer = setInterval(
+			() => {
+				if (this._lastCheckInDate == null || this._lastCheckInDate.getDate() !== new Date().getDate()) {
+					void this.ensureSession(false, true);
+				}
+			},
+			1000 * 60 * 60 * 12,
+		);
 	}
 
 	@debug()
@@ -758,8 +761,8 @@ export class SubscriptionService implements Disposable {
 			const required = allowed
 				? false
 				: subscription.required != null && isSubscriptionPaidPlan(subscription.required)
-				? 'paid'
-				: 'free+';
+					? 'paid'
+					: 'free+';
 			void setContext(ContextKeys.PlusAllowed, allowed);
 			void setContext(ContextKeys.PlusRequired, required);
 		});

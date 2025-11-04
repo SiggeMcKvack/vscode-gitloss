@@ -179,10 +179,10 @@ export class CherryPickGitCommand extends QuickCommand<State> {
 							log == null
 								? `No pickable commits found on ${GitReference.toString(context.selectedBranchOrTag, {
 										icon: false,
-								  })}`
+									})}`
 								: `Choose commits to cherry-pick into ${GitReference.toString(context.destination, {
 										icon: false,
-								  })}`,
+									})}`,
 					},
 				);
 				if (result === StepResult.Break) continue;

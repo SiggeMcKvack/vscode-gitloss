@@ -84,7 +84,10 @@ export class AuthenticationError extends Error {
 }
 
 export class ExtensionNotFoundError extends Error {
-	constructor(public readonly extensionId: string, public readonly extensionName: string) {
+	constructor(
+		public readonly extensionId: string,
+		public readonly extensionName: string,
+	) {
 		super(
 			`Unable to find the ${extensionName} extension (${extensionId}). Please ensure it is installed and enabled.`,
 		);
@@ -154,8 +157,8 @@ export class ProviderNotFoundError extends Error {
 				pathOrUri == null
 					? String(pathOrUri)
 					: typeof pathOrUri === 'string'
-					? pathOrUri
-					: pathOrUri.toString(true)
+						? pathOrUri
+						: pathOrUri.toString(true)
 			}'`,
 		);
 

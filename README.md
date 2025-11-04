@@ -100,11 +100,9 @@ Here are just some of the **features** that GitLens provides,
 </p>
 
 - Adds Git authorship **CodeLens** to the top of the file and on code blocks ([optional](#git-codelens-settings- 'Jump to the Git CodeLens settings'), on by default)
-
   - **Recent Change** &mdash; author and date of the most recent commit for the file or code block
     - Click the CodeLens to show a **commit file details quick pick menu** with commands for comparing, navigating and exploring commits, and more (by [default](#git-codelens-settings- 'Jump to the Git CodeLens settings'))
   - **Authors** &mdash; number of authors of the file or code block and the most prominent author (if there is more than one)
-
     - Click the CodeLens to toggle the file Git blame annotations on and off of the whole file (by [default](#git-codelens-settings- 'Jump to the Git CodeLens settings'))
     - Will be hidden if the author of the most recent commit is also the only author of the file or block, to avoid duplicate information and reduce visual noise
 
@@ -125,7 +123,6 @@ Here are just some of the **features** that GitLens provides,
 </p>
 
 - Adds a [customizable](#status-bar-settings- 'Jump to the Status Bar Blame settings') **Git blame annotation** showing the commit and author who last modified the current line to the **status bar** ([optional](#status-bar-settings- 'Jump to the Status Bar Blame settings'), on by default)
-
   - Contains the commit author and date (by [default](#status-bar-settings- 'Jump to the Status Bar Blame settings'))
   - Click the status bar item to show a **commit details quick pick menu** with commands for comparing, navigating and exploring commits, and more (by [default](#status-bar-settings- 'Jump to the Status Bar Blame settings'))
 
@@ -495,7 +492,6 @@ The _Search & Compare_ view lists pinnable (saved) results for searching commit 
 </p>
 
 - Adds a [customizable](#git-command-palette-settings- 'Jump to the Git Command Palette settings') _Git Command Palette_ command (`gitlens.gitCommands`) to provide guided (step-by-step) access to many common Git commands, as well as quick access to commit history and search, stashes, and more
-
   - Quickly navigate and execute Git commands through easy-to-use menus where each command can require an explicit confirmation step before executing
 
 ### Quick Commit Access [#](#quick-commit-access- 'Quick Commit Access')
@@ -565,7 +561,6 @@ The _Search & Compare_ view lists pinnable (saved) results for searching commit 
   - Quickly re-order, edit, squash, and drop commits
   - Includes drag & drop support!
 - To use this directly from your terminal, e.g. when running `git rebase -i`,
-
   - set VS Code as your default Git editor
     - `git config --global core.editor "code --wait"`
   - or, to only affect rebase, set VS Code as your Git rebase editor

@@ -212,8 +212,8 @@ export abstract class WebviewBase<State> implements Disposable {
 						return bootstrap != null
 							? `<script type="text/javascript" nonce="#{cspNonce}">window.bootstrap = ${JSON.stringify(
 									bootstrap,
-							  )};</script>${endOfBody ?? ''}`
-							: endOfBody ?? '';
+								)};</script>${endOfBody ?? ''}`
+							: (endOfBody ?? '');
 					default:
 						return '';
 				}

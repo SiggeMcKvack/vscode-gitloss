@@ -160,7 +160,7 @@ export class BranchNode
 						? this.view.container.git.getLogRefsOnly(this.uri.repoPath!, {
 								limit: 0,
 								ref: range,
-						  })
+							})
 						: undefined,
 				],
 			);
@@ -362,21 +362,21 @@ export class BranchNode
 				description = this.options.showAsCommits
 					? `${this.branch.getTrackingStatus({
 							suffix: pad(GlyphChars.Dot, 1, 1),
-					  })}${this.branch.getNameWithoutRemote()}${this.branch.rebasing ? ' (Rebasing)' : ''}${pad(
+						})}${this.branch.getNameWithoutRemote()}${this.branch.rebasing ? ' (Rebasing)' : ''}${pad(
 							arrows,
 							2,
 							2,
-					  )}${this.branch.upstream.name}`
+						)}${this.branch.upstream.name}`
 					: `${this.branch.getTrackingStatus({ suffix: `${GlyphChars.Space} ` })}${arrows}${
 							GlyphChars.Space
-					  } ${this.branch.upstream.name}`;
+						} ${this.branch.upstream.name}`;
 
 				tooltip += ` is ${this.branch.getTrackingStatus({
 					empty: this.branch.upstream.missing
 						? `missing upstream $(git-branch) ${this.branch.upstream.name}`
 						: `up to date with $(git-branch)  ${this.branch.upstream.name}${
 								remote?.provider?.name ? ` on ${remote.provider.name}` : ''
-						  }`,
+							}`,
 					expand: true,
 					icons: true,
 					separator: ', ',
@@ -437,7 +437,7 @@ export class BranchNode
 			: {
 					dark: this.view.container.context.asAbsolutePath(`images/dark/icon-branch${iconSuffix}.svg`),
 					light: this.view.container.context.asAbsolutePath(`images/light/icon-branch${iconSuffix}.svg`),
-			  };
+				};
 		item.tooltip = tooltip;
 		item.resourceUri = Uri.parse(
 			`gitlens-view://branch/status/${await this.branch.getStatus()}${

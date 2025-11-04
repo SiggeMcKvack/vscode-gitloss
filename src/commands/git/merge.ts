@@ -177,10 +177,10 @@ export class MergeGitCommand extends QuickCommand<State> {
 						log == null
 							? `No commits found on ${GitReference.toString(context.selectedBranchOrTag, {
 									icon: false,
-							  })}`
+								})}`
 							: `Choose a commit to merge into ${GitReference.toString(context.destination, {
 									icon: false,
-							  })}`,
+								})}`,
 					picked: state.reference?.ref,
 				});
 				if (result === StepResult.Break) continue;

@@ -11083,7 +11083,7 @@
 		"license-checker-rseidelsohn": "4.4.2",
 		"mini-css-extract-plugin": "2.9.4",
 		"mocha": "11.7.4",
-		"prettier": "2.5.1",
+		"prettier": "3.6.2",
 		"sass": "1.93.3",
 		"sass-loader": "16.0.6",
 		"sharp": "0.34.4",

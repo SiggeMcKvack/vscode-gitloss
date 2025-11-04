@@ -278,12 +278,12 @@ export class LineAnnotationController implements Disposable {
 				'pullRequestDate',
 				'pullRequestState',
 			)
-				? options?.prs ??
-				  this.getPullRequests(
+				? (options?.prs ??
+					this.getPullRequests(
 						repoPath,
 						commitLines.filter(([, commit]) => !commit.isUncommitted),
 						{ timeout: timeout },
-				  )
+					))
 				: undefined,
 		]);
 

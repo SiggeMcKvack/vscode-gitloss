@@ -83,7 +83,7 @@ export class WorktreeNode extends ViewNode<WorktreesView | RepositoriesView> {
 					? this.view.container.git.getLogRefsOnly(this.uri.repoPath!, {
 							limit: 0,
 							ref: range,
-					  })
+						})
 					: undefined,
 			]);
 			if (log == null) return [new MessageNode(this.view, this, 'No commits could be found.')];
@@ -172,9 +172,9 @@ export class WorktreeNode extends ViewNode<WorktreesView | RepositoriesView> {
 						this.worktree.main
 							? `_Main${this.worktree.opened ? ', Active_' : '_'}`
 							: this.worktree.opened
-							? '_Active_'
-							: ''
-				  } `
+								? '_Active_'
+								: ''
+					} `
 				: '';
 
 		switch (this.worktree.type) {
@@ -255,7 +255,7 @@ export class WorktreeNode extends ViewNode<WorktreesView | RepositoriesView> {
 										? `missing upstream $(git-branch) ${branch.upstream.name}`
 										: `up to date with $(git-branch)  ${branch.upstream.name}${
 												remote?.provider?.name ? ` on ${remote.provider.name}` : ''
-										  }`,
+											}`,
 									expand: true,
 									icons: true,
 									separator: ', ',

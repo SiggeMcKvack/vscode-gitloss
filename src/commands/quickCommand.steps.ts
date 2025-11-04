@@ -209,7 +209,7 @@ export async function getBranchesAndOrTags(
 				? repo.getBranches({
 						filter: filter?.branches,
 						sort: typeof sort === 'boolean' ? sort : sort?.branches,
-				  })
+					})
 				: undefined,
 			include.includes('tags') ? repo.getTags({ filter: filter?.tags, sort: true }) : undefined,
 		]);
@@ -227,14 +227,14 @@ export async function getBranchesAndOrTags(
 								sort: typeof sort === 'boolean' ? sort : sort?.branches,
 							}),
 						),
-				  )
+					)
 				: undefined,
 			include.includes('tags')
 				? Promise.allSettled(
 						repos.map(r =>
 							r.getTags({ filter: filter?.tags, sort: typeof sort === 'boolean' ? sort : sort?.tags }),
 						),
-				  )
+					)
 				: undefined,
 		]);
 
@@ -689,7 +689,7 @@ export async function* pickBranchOrTagStep<
 				? `No branches${context.showTags ? ' or tags' : ''} found in ${state.repo.formattedName}`
 				: `${typeof placeholder === 'string' ? placeholder : placeholder(context)}${GlyphChars.Space.repeat(
 						3,
-				  )}(or enter a reference using #)`,
+					)}(or enter a reference using #)`,
 		matchOnDescription: true,
 		matchOnDetail: true,
 		value: value,
@@ -730,7 +730,7 @@ export async function* pickBranchOrTagStep<
 							? `${state.repo.formattedName} has no branches${context.showTags ? ' or tags' : ''}`
 							: `${
 									typeof placeholder === 'string' ? placeholder : placeholder(context)
-							  }${GlyphChars.Space.repeat(3)}(or enter a reference using #)`;
+								}${GlyphChars.Space.repeat(3)}(or enter a reference using #)`;
 					quickpick.items = branchesAndOrTags;
 				} finally {
 					quickpick.busy = false;
@@ -798,12 +798,12 @@ export async function* pickBranchOrTagStepMultiRepo<
 			branchesAndOrTags.length === 0
 				? `No ${state.repos.length === 1 ? '' : 'common '}branches${
 						context.showTags ? ' or tags' : ''
-				  } found in ${
+					} found in ${
 						state.repos.length === 1 ? state.repos[0].formattedName : `${state.repos.length} repositories`
-				  }`
+					}`
 				: `${typeof placeholder === 'string' ? placeholder : placeholder(context)}${GlyphChars.Space.repeat(
 						3,
-				  )}(or enter a reference using #)`,
+					)}(or enter a reference using #)`,
 		matchOnDescription: true,
 		matchOnDetail: true,
 		value: value ?? (GitReference.isRevision(state.reference) ? state.reference.ref : undefined),
@@ -837,14 +837,14 @@ export async function* pickBranchOrTagStepMultiRepo<
 						branchesAndOrTags.length === 0
 							? `No ${state.repos.length === 1 ? '' : 'common '}branches${
 									context.showTags ? ' or tags' : ''
-							  } found in ${
+								} found in ${
 									state.repos.length === 1
 										? state.repos[0].formattedName
 										: `${state.repos.length} repositories`
-							  }`
+								}`
 							: `${
 									typeof placeholder === 'string' ? placeholder : placeholder(context)
-							  }${GlyphChars.Space.repeat(3)}(or enter a reference using #)`;
+								}${GlyphChars.Space.repeat(3)}(or enter a reference using #)`;
 					quickpick.items = branchesAndOrTags;
 				} finally {
 					quickpick.busy = false;
@@ -918,7 +918,7 @@ export async function* pickCommitStep<
 						),
 					),
 					...(log?.hasMore ? [DirectiveQuickPickItem.create(Directive.LoadMore)] : []),
-			  ];
+				];
 	}
 
 	const step = QuickCommand.createPickStep<CommandQuickPickItem | CommitQuickPickItem>({
@@ -1068,7 +1068,7 @@ export function* pickCommitsStep<
 					),
 					// Since this is multi-select, we can't have a "Load more" item
 					// ...(log?.hasMore ? [DirectiveQuickPickItem.create(Directive.LoadMore)] : []),
-			  ];
+				];
 	}
 
 	const step = QuickCommand.createPickStep<CommitQuickPickItem>({
@@ -1213,7 +1213,7 @@ export async function* pickRepositoryStep<
 								status: true,
 							}),
 						),
-				  ),
+					),
 		onDidClickItemButton: (quickpick, button, { item }) => {
 			if (button === QuickCommandButtons.RevealInSideBar) {
 				void GitActions.Repository.reveal(item.path, context.associatedView, {
@@ -1283,7 +1283,7 @@ export async function* pickRepositoriesStep<
 								},
 							),
 						),
-				  ),
+					),
 		onDidClickItemButton: (quickpick, button, { item }) => {
 			if (button === QuickCommandButtons.RevealInSideBar) {
 				void GitActions.Repository.reveal(item.path, context.associatedView, {
@@ -1350,7 +1350,7 @@ export function* pickStashStep<
 								},
 							),
 						),
-				  ],
+					],
 		onDidClickItemButton: (_quickpick, button, { item }) => {
 			if (button === QuickCommandButtons.RevealInSideBar) {
 				void GitActions.Stash.reveal(item, {
@@ -1675,7 +1675,7 @@ async function getShowCommitOrStashStepItems<
 				? Container.instance.git.getCommitBranches(state.repo.path, state.reference.ref, {
 						branch: branch.name,
 						commitDate: GitCommit.is(state.reference) ? state.reference.committer.date : undefined,
-				  })
+					})
 				: undefined,
 			!branch?.remote && branch?.upstream != null ? state.reference.isPushed() : undefined,
 		]);
@@ -2119,7 +2119,7 @@ function getShowRepositoryStatusStepItems<
 			computed.unstaged
 				? `${computed.staged ? ', ' : ''}${pluralize('unstaged file', computed.unstaged)} (${
 						computed.unstagedStatus
-				  })`
+					})`
 				: ''
 		}`;
 	}

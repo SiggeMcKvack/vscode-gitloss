@@ -15,7 +15,11 @@ export class Stopwatch {
 	private readonly logLevel: StopwatchLogLevel;
 	private time: [number, number];
 
-	constructor(public readonly context: string | LogCorrelationContext, options?: StopwatchOptions, ...params: any[]) {
+	constructor(
+		public readonly context: string | LogCorrelationContext,
+		options?: StopwatchOptions,
+		...params: any[]
+	) {
 		let cc;
 		if (typeof context !== 'string') {
 			cc = context;

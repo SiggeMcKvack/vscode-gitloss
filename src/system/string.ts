@@ -308,10 +308,10 @@ export function pluralize(
 ) {
 	if (options == null) return `${count} ${s}${count === 1 ? '' : 's'}`;
 
-	const suffix = count === 1 ? s : options.plural ?? `${s}s`;
+	const suffix = count === 1 ? s : (options.plural ?? `${s}s`);
 	if (options.only) return suffix;
 
-	return `${count === 0 ? options.zero ?? count : options.format?.(count) ?? count}${options.infix ?? ' '}${suffix}`;
+	return `${count === 0 ? (options.zero ?? count) : (options.format?.(count) ?? count)}${options.infix ?? ' '}${suffix}`;
 }
 
 // Removes \ / : * ? " < > | and C0 and C1 control codes

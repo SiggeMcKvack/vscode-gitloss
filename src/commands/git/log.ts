@@ -178,7 +178,7 @@ export class LogGitCommand extends QuickCommand<State> {
 						log == null
 							? `No commits found in ${GitReference.toString(context.selectedBranchOrTag, {
 									icon: false,
-							  })}`
+								})}`
 							: 'Choose a commit',
 					picked: state.reference?.ref,
 				});

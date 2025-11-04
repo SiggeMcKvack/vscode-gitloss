@@ -324,7 +324,9 @@ export class GitCommandsCommand extends Command {
 
 	private async showInputStep(step: QuickInputStep, commandsStep: PickCommandStep) {
 		const input = window.createInputBox();
-		input.ignoreFocusOut = !configuration.get('gitCommands.closeOnFocusOut') ? true : step.ignoreFocusOut ?? false;
+		input.ignoreFocusOut = !configuration.get('gitCommands.closeOnFocusOut')
+			? true
+			: (step.ignoreFocusOut ?? false);
 
 		const disposables: Disposable[] = [];
 
@@ -438,7 +440,7 @@ export class GitCommandsCommand extends Command {
 	private async showPickStep(step: QuickPickStep, commandsStep: PickCommandStep) {
 		const originalIgnoreFocusOut = !configuration.get('gitCommands.closeOnFocusOut')
 			? true
-			: step.ignoreFocusOut ?? false;
+			: (step.ignoreFocusOut ?? false);
 		const originalStepIgnoreFocusOut = step.ignoreFocusOut;
 
 		const quickpick = window.createQuickPick();

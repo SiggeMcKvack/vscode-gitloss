@@ -59,7 +59,7 @@ export class LineHistoryTrackerNode extends SubscribeableViewNode<FileHistoryVie
 								this.uri.sha === GitRevision.deletedOrMissing
 									? this.uri.shortSha
 									: `(${this.uri.shortSha})`
-						  }`
+							}`
 						: ''
 				}${!this.followingEditor ? ' (pinned)' : ''}`;
 				return [];

@@ -62,16 +62,19 @@ export function filterMapAsync<T, TMapped>(
 }
 
 export function groupBy<T>(source: T[], groupingKey: (item: T) => string): Record<string, T[]> {
-	return source.reduce((groupings, current) => {
-		const value = groupingKey(current);
-		const group = groupings[value];
-		if (group === undefined) {
-			groupings[value] = [current];
-		} else {
-			group.push(current);
-		}
-		return groupings;
-	}, Object.create(null) as Record<string, T[]>);
+	return source.reduce(
+		(groupings, current) => {
+			const value = groupingKey(current);
+			const group = groupings[value];
+			if (group === undefined) {
+				groupings[value] = [current];
+			} else {
+				group.push(current);
+			}
+			return groupings;
+		},
+		Object.create(null) as Record<string, T[]>,
+	);
 }
 
 export function groupByMap<TKey, TValue>(source: TValue[], groupingKey: (item: TValue) => TKey): Map<TKey, TValue[]> {

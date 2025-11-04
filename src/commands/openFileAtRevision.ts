@@ -113,7 +113,7 @@ export class OpenFileAtRevisionCommand extends ActiveEditorCommand {
 						(gitUri.sha
 							? this.container.git.getLogForFile(gitUri.repoPath, gitUri.fsPath, {
 									ref: gitUri.sha,
-							  })
+								})
 							: undefined),
 				);
 

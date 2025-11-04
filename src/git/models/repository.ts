@@ -86,7 +86,10 @@ export const enum RepositoryChangeComparisonMode {
 export class RepositoryChangeEvent {
 	private readonly _changes: Set<RepositoryChange>;
 
-	constructor(public readonly repository: Repository, changes: RepositoryChange[]) {
+	constructor(
+		public readonly repository: Repository,
+		changes: RepositoryChange[],
+	) {
 		this._changes = new Set(changes);
 	}
 
@@ -310,7 +313,7 @@ export class Repository implements Disposable {
 			uri != null
 				? /(?<ignore>\/\.gitignore)|\.git\/(?<type>config|index|HEAD|FETCH_HEAD|ORIG_HEAD|CHERRY_PICK_HEAD|MERGE_HEAD|REBASE_HEAD|rebase-merge|refs\/(?:heads|remotes|stash|tags)|worktrees)/.exec(
 						uri.path,
-				  )
+					)
 				: undefined;
 		if (match?.groups != null) {
 			const { ignore, type } = match.groups;
@@ -736,10 +739,10 @@ export class Repository implements Disposable {
 											id: remote.provider.id,
 											name: remote.provider.name,
 											domain: remote.provider.domain,
-									  }
+										}
 									: undefined,
 							url: remote.url,
-					  }
+						}
 					: { name: remoteName },
 			branch: {
 				name: branch.name,

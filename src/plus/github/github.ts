@@ -1029,7 +1029,7 @@ export class GitHubApi {
 						? {
 								cursor: history.pageInfo.endCursor ?? undefined,
 								more: history.pageInfo.hasNextPage,
-						  }
+							}
 						: undefined,
 				values: history.nodes,
 				viewer: rsp?.viewer.name,
@@ -1916,8 +1916,8 @@ export namespace GitHubPullRequest {
 		return state === 'MERGED'
 			? PullRequestState.Merged
 			: state === 'CLOSED'
-			? PullRequestState.Closed
-			: PullRequestState.Open;
+				? PullRequestState.Closed
+				: PullRequestState.Open;
 	}
 
 	export function toState(state: PullRequestState): GitHubPullRequestState {
