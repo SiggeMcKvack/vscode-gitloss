@@ -351,16 +351,18 @@ describe('UriEntryTrie Test Suite', () => {
 		trie.set(repoGLvfs.uri, repoGLvfs);
 		trie.set(repoVSCvfs.uri, repoVSCvfs);
 
-		let file: File = { type: 'file', name: 'index.ts', uri: Uri.joinPath(repoNested.uri, 'src\\index.ts') };
+		let file: File = { type: 'file', name: 'index.ts', uri: Uri.joinPath(repoNested.uri, 'src/index.ts') };
 		trie.set(file.uri, file);
 
 		file = { type: 'file', name: 'main.ts', uri: Uri.joinPath(repoVSCvfs.uri, 'src/main.ts') };
 		trie.set(file.uri, file);
 
 		for (const path of paths) {
-			file = { type: 'file', name: basename(path), uri: Uri.file(`C:\\Users\\Name\\code${path}`) };
+			// Normalize backslashes to forward slashes for cross-platform compatibility
+			const normalizedPath = path.replace(/\\/g, '/');
+			file = { type: 'file', name: basename(path), uri: Uri.file(`C:/Users/Name/code${normalizedPath}`) };
 			trie.set(file.uri, file);
-			file = { type: 'file', name: basename(path), uri: repoGLvfs.uri.with({ path: path.replace(/\\/g, '/') }) };
+			file = { type: 'file', name: basename(path), uri: repoGLvfs.uri.with({ path: normalizedPath }) };
 			trie.set(file.uri, file);
 		}
 	});

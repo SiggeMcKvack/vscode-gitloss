@@ -8,3 +8,5 @@ node_modules
 images/settings
 gitlens-*.vsix
 tsconfig*.tsbuildinfo
+.claude/settings.local.json
+CLAUDE.md
