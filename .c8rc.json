@@ -1,0 +1,22 @@
+{
+	"all": true,
+	"src": "out",
+	"exclude": [
+		"out/test/**",
+		"out/**/*.test.js",
+		"out/**/*.spec.js",
+		"**/*.d.ts",
+		"**/node_modules/**"
+	],
+	"reporter": [
+		"html",
+		"text",
+		"lcov"
+	],
+	"report-dir": "coverage",
+	"lines": 70,
+	"statements": 70,
+	"functions": 70,
+	"branches": 70,
+	"check-coverage": false
+}

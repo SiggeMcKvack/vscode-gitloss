@@ -8,3 +8,6 @@ node_modules
 images/settings
 gitlens-*.vsix
 tsconfig*.tsbuildinfo
+coverage
+.nyc_output
+*.lcov
