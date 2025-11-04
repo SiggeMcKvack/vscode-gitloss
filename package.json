@@ -11048,7 +11048,6 @@
 	},
 	"devDependencies": {
 		"@types/chroma-js": "3.1.2",
-		"@types/glob": "9.0.0",
 		"@types/lodash-es": "4.17.12",
 		"@types/mocha": "10.0.10",
 		"@types/node": "14.17.4",
