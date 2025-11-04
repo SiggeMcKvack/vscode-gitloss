@@ -98,7 +98,7 @@ const emptyPromise: Promise<GitBlame | GitDiff | GitLog | undefined> = Promise.r
 const githubAuthenticationScopes = ['repo', 'read:user', 'user:email'];
 
 // Since negative lookbehind isn't supported in all browsers, this leaves out the negative lookbehind condition `(?<!\.lock)` to ensure the branch name doesn't end with `.lock`
-const validBranchOrTagRegex = /^[^/](?!.*\/\.)(?!.*\.\.)(?!.*\/\/)(?!.*@\{)[^\000-\037\177 ~^:?*[\\]+[^./]$/;
+const validBranchOrTagRegex = /^[^/](?!.*\/\.)(?!.*\.\.)(?!.*\/\/)(?!.*@\{)[^\x00-\x1f\x7f ~^:?*[\\]+[^./]$/;
 
 interface RepositoryInfo {
 	user?: GitUser | null;

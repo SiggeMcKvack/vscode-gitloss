@@ -265,7 +265,7 @@ export namespace QuickCommand {
 	) {
 		if (!canStepContinue(step, state, value)) return false;
 
-		const [valid] = (await step.validate?.(value)) ?? [true];
+		const [valid] = (await step.validate?.(value as string | undefined)) ?? [true];
 		if (valid) {
 			state.counter++;
 			return true;

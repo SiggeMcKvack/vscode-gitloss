@@ -343,7 +343,7 @@ export class SearchGitCommand extends QuickCommand<State> {
 				quickpick.title = appendReposToTitle(
 					operations.size === 0 || operations.size > 1
 						? context.title
-						: `Commit ${searchOperatorToTitleMap.get(operations.keys().next().value)!}`,
+						: `Commit ${searchOperatorToTitleMap.get(operations.keys().next().value! as SearchOperators)!}`,
 					state,
 					context,
 				);
