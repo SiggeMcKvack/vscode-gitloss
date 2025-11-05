@@ -65,7 +65,9 @@ export class GitBranchParser {
 					ref == null || ref.length === 0 ? undefined : ` ${ref}`.substr(1),
 					// Stops excessive memory usage -- https://bugs.chromium.org/p/v8/issues/detail?id=2869
 					upstream == null || upstream.length === 0
-						? undefined
+						? missing
+							? { name: '', missing: true }
+							: undefined
 						: { name: ` ${upstream}`.substr(1), missing: Boolean(missing) },
 					Number(ahead) || 0,
 					Number(behind) || 0,

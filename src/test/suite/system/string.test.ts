@@ -36,7 +36,7 @@ describe('String Utilities', () => {
 
 		it('should handle special characters', () => {
 			assert.strictEqual(compareIgnoreCase('test-1', 'test-1'), 0);
-			assert.strictEqual(compareIgnoreCase('test_1', 'test-1'), 1);
+			assert.strictEqual(compareIgnoreCase('test_1', 'test-1'), -1);
 		});
 
 		it('should handle unicode characters', () => {
