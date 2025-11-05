@@ -59,9 +59,9 @@ describe('PathEntryTrie Test Suite', () => {
 	});
 
 	it('has: repo (ignore case)', () => {
-		assert.strictEqual(trie.has(repoGL.fsPath.toUpperCase()), true);
-		assert.strictEqual(trie.has(repoNested.fsPath.toUpperCase()), true);
-		assert.strictEqual(trie.has(repoVSC.fsPath.toUpperCase()), true);
+		assert.strictEqual(trie.has(repoGL.fsPath.toUpperCase(), true), true);
+		assert.strictEqual(trie.has(repoNested.fsPath.toUpperCase(), true), true);
+		assert.strictEqual(trie.has(repoVSC.fsPath.toUpperCase(), true), true);
 	});
 
 	it('has: file', () => {
@@ -73,11 +73,11 @@ describe('PathEntryTrie Test Suite', () => {
 	});
 
 	it('has: file (ignore case)', () => {
-		assert.strictEqual(trie.has(`${repoGL.fsPath}\\src\\extension.ts`.toUpperCase()), true);
-		assert.strictEqual(trie.has(`${repoGL.fsPath}\\foo\\bar\\baz.ts`.toUpperCase()), false);
+		assert.strictEqual(trie.has(`${repoGL.fsPath}\\src\\extension.ts`.toUpperCase(), true), true);
+		assert.strictEqual(trie.has(`${repoGL.fsPath}\\foo\\bar\\baz.ts`.toUpperCase(), true), false);
 
-		assert.strictEqual(trie.has(`${repoNested.fsPath}\\src\\index.ts`.toUpperCase()), true);
-		assert.strictEqual(trie.has(`${repoVSC.fsPath}\\src\\main.ts`.toUpperCase()), true);
+		assert.strictEqual(trie.has(`${repoNested.fsPath}\\src\\index.ts`.toUpperCase(), true), true);
+		assert.strictEqual(trie.has(`${repoVSC.fsPath}\\src\\main.ts`.toUpperCase(), true), true);
 	});
 
 	it('has: folder (failure case)', () => {
@@ -110,19 +110,19 @@ describe('PathEntryTrie Test Suite', () => {
 	});
 
 	it('get: repo (ignore case)', () => {
-		let entry = trie.get(repoGL.fsPath.toUpperCase());
+		let entry = trie.get(repoGL.fsPath.toUpperCase(), true);
 		assert.strictEqual(entry?.path, basename(repoGL.path));
 		assert.strictEqual(entry?.fullPath, repoGL.path);
 		assert.strictEqual(entry?.value?.type, 'repo');
 		assert.strictEqual(entry?.value?.path, repoGL.path);
 
-		entry = trie.get(repoNested.fsPath.toUpperCase());
+		entry = trie.get(repoNested.fsPath.toUpperCase(), true);
 		assert.strictEqual(entry?.path, basename(repoNested.path));
 		assert.strictEqual(entry?.fullPath, repoNested.path);
 		assert.strictEqual(entry?.value?.type, 'repo');
 		assert.strictEqual(entry?.value?.path, repoNested.path);
 
-		entry = trie.get(repoVSC.fsPath.toUpperCase());
+		entry = trie.get(repoVSC.fsPath.toUpperCase(), true);
 		assert.strictEqual(entry?.path, basename(repoVSC.path));
 		assert.strictEqual(entry?.fullPath, repoVSC.path);
 		assert.strictEqual(entry?.value?.type, 'repo');
@@ -149,17 +149,17 @@ describe('PathEntryTrie Test Suite', () => {
 	});
 
 	it('get: file (ignore case)', () => {
-		let entry = trie.get(`${repoGL.fsPath}\\src\\extension.ts`.toLocaleUpperCase());
+		let entry = trie.get(`${repoGL.fsPath}\\src\\extension.ts`.toLocaleUpperCase(), true);
 		assert.strictEqual(entry?.path, 'extension.ts');
 		assert.strictEqual(entry?.fullPath, `${repoGL.path}/src/extension.ts`);
 		assert.strictEqual(entry?.value?.path, `${repoGL.fsPath}\\src\\extension.ts`);
 
-		entry = trie.get(`${repoNested.fsPath}\\src\\index.ts`.toLocaleUpperCase());
+		entry = trie.get(`${repoNested.fsPath}\\src\\index.ts`.toLocaleUpperCase(), true);
 		assert.strictEqual(entry?.path, 'index.ts');
 		assert.strictEqual(entry?.fullPath, `${repoNested.path}/src/index.ts`);
 		assert.strictEqual(entry?.value?.path, `${repoNested.fsPath}\\src\\index.ts`);
 
-		entry = trie.get(`${repoVSC.fsPath}\\src\\main.ts`.toLocaleUpperCase());
+		entry = trie.get(`${repoVSC.fsPath}\\src\\main.ts`.toLocaleUpperCase(), true);
 		assert.strictEqual(entry?.path, 'main.ts');
 		assert.strictEqual(entry?.fullPath, `${repoVSC.path}/src/main.ts`);
 		assert.strictEqual(entry?.value?.path, `${repoVSC.fsPath}\\src\\main.ts`);
@@ -189,34 +189,34 @@ describe('PathEntryTrie Test Suite', () => {
 	});
 
 	it('getClosest: repo file (ignore case)', () => {
-		let entry = trie.getClosest(`${repoGL.fsPath}\\src\\extension.ts`.toUpperCase(), true);
+		let entry = trie.getClosest(`${repoGL.fsPath}\\src\\extension.ts`.toUpperCase(), true, undefined, true);
 		assert.strictEqual(entry?.path, repoGL.name);
 		assert.strictEqual(entry?.fullPath, repoGL.path);
 		assert.strictEqual(entry?.value?.path, repoGL.path);
 
-		entry = trie.getClosest(`${repoNested.fsPath}\\src\\index.ts`.toUpperCase(), true);
+		entry = trie.getClosest(`${repoNested.fsPath}\\src\\index.ts`.toUpperCase(), true, undefined, true);
 		assert.strictEqual(entry?.path, repoNested.name);
 		assert.strictEqual(entry?.fullPath, repoNested.path);
 		assert.strictEqual(entry?.value?.path, repoNested.path);
 
-		entry = trie.getClosest(`${repoVSC.fsPath}\\src\\main.ts`.toUpperCase(), true);
+		entry = trie.getClosest(`${repoVSC.fsPath}\\src\\main.ts`.toUpperCase(), true, undefined, true);
 		assert.strictEqual(entry?.path, repoVSC.name);
 		assert.strictEqual(entry?.fullPath, repoVSC.path);
 		assert.strictEqual(entry?.value?.path, repoVSC.path);
 	});
 
 	it('getClosest: missing path but inside repo', () => {
-		let entry = trie.getClosest(`${repoGL.fsPath}\\src\\foo\\bar\\baz.ts`.toUpperCase());
+		let entry = trie.getClosest(`${repoGL.fsPath}\\src\\foo\\bar\\baz.ts`.toUpperCase(), undefined, undefined, true);
 		assert.strictEqual(entry?.path, repoGL.name);
 		assert.strictEqual(entry?.fullPath, repoGL.path);
 		assert.strictEqual(entry?.value?.path, repoGL.path);
 
-		entry = trie.getClosest(`${repoNested.fsPath}\\foo\\bar\\baz.ts`.toUpperCase());
+		entry = trie.getClosest(`${repoNested.fsPath}\\foo\\bar\\baz.ts`.toUpperCase(), undefined, undefined, true);
 		assert.strictEqual(entry?.path, repoNested.name);
 		assert.strictEqual(entry?.fullPath, repoNested.path);
 		assert.strictEqual(entry?.value?.path, repoNested.path);
 
-		entry = trie.getClosest(`${repoVSC.fsPath}\\src\\foo\\bar\\baz.ts`.toUpperCase());
+		entry = trie.getClosest(`${repoVSC.fsPath}\\src\\foo\\bar\\baz.ts`.toUpperCase(), undefined, undefined, true);
 		assert.strictEqual(entry?.path, repoVSC.name);
 		assert.strictEqual(entry?.fullPath, repoVSC.path);
 		assert.strictEqual(entry?.value?.path, repoVSC.path);
