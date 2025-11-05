@@ -128,7 +128,7 @@ export class GitBranch implements GitBranchReference {
 			this.name = GitBranch.formatDetached(this.sha!);
 		}
 
-		this.upstream = upstream?.name == null || upstream.name.length === 0 ? undefined : upstream;
+		this.upstream = upstream?.name == null || (upstream.name.length === 0 && !upstream.missing) ? undefined : upstream;
 		this.state = {
 			ahead: ahead,
 			behind: behind,
