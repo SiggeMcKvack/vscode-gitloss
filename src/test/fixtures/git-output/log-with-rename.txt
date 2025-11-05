@@ -6,7 +6,6 @@
 <n> John Doe
 <m> john.doe@example.com
 <c> 1609459200
-<p>
 <s>
 Rename file
 </s>
