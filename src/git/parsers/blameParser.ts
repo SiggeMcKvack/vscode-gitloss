@@ -57,12 +57,32 @@ export class GitBlameParser {
 		let line: string;
 		let lineParts: string[];
 
-		for (line of getLines(data)) {
+		const linesIterator = getLines(data);
+		let next = linesIterator.next();
+
+		while (!next.done) {
+			line = next.value;
+			next = linesIterator.next();
+
+			// Skip code lines (start with tab)
+			if (line.startsWith('\t')) continue;
+
 			lineParts = line.split(' ');
 			if (lineParts.length < 2) continue;
 
 			[key] = lineParts;
 			if (entry == null) {
+				// Check if this is a continuation entry (no lineCount)
+				// Continuation lines have format: SHA originalLine line (3 parts)
+				// Full entries have: SHA originalLine line lineCount (4 parts)
+				const isContinuation = lineParts.length === 3;
+
+				if (isContinuation) {
+					// This is a continuation line - the full entry with lineCount already
+					// created all the lines, so we can just skip continuation entries
+					continue;
+				}
+
 				// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 				entry = {
 					sha: key,
