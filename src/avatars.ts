@@ -22,10 +22,10 @@ _onDidFetchAvatar.event(
 											uri: avatar.uri.toString(),
 											timestamp: avatar.timestamp,
 										},
-								  ]
+									]
 								: undefined,
 						),
-				  ]
+					]
 				: undefined;
 		void Container.instance.storage.store(StorageKeys.Avatars, avatars);
 	}, 1000),

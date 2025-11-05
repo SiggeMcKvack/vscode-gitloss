@@ -93,12 +93,12 @@ export namespace Hovers {
 				compareUris.previous.sha == null || compareUris.previous.isUncommitted
 					? `  &nbsp;_${GitRevision.shorten(compareUris.previous.sha, {
 							strings: { working: 'Working Tree' },
-					  })}_ &nbsp;${GlyphChars.ArrowLeftRightLong}&nbsp; `
+						})}_ &nbsp;${GlyphChars.ArrowLeftRightLong}&nbsp; `
 					: `  &nbsp;[$(git-commit) ${GitRevision.shorten(
 							compareUris.previous.sha || '',
-					  )}](${ShowQuickCommitCommand.getMarkdownCommandArgs(
+						)}](${ShowQuickCommitCommand.getMarkdownCommandArgs(
 							compareUris.previous.sha || '',
-					  )} "Show Commit") &nbsp;${GlyphChars.ArrowLeftRightLong}&nbsp; `;
+						)} "Show Commit") &nbsp;${GlyphChars.ArrowLeftRightLong}&nbsp; `;
 
 			current =
 				compareUris.current.sha == null || compareUris.current.isUncommitted
@@ -106,12 +106,12 @@ export namespace Hovers {
 							strings: {
 								working: 'Working Tree',
 							},
-					  })}_`
+						})}_`
 					: `[$(git-commit) ${GitRevision.shorten(
 							compareUris.current.sha || '',
-					  )}](${ShowQuickCommitCommand.getMarkdownCommandArgs(
+						)}](${ShowQuickCommitCommand.getMarkdownCommandArgs(
 							compareUris.current.sha || '',
-					  )} "Show Commit")`;
+						)} "Show Commit")`;
 		} else {
 			message = `[$(compare-changes)](${DiffWithCommand.getMarkdownCommandArgs(
 				commit,

@@ -33,13 +33,20 @@ export function any<T>(...promises: Promise<T>[]): Promise<T> {
 }
 
 export class PromiseCancelledError<T extends Promise<any> = Promise<any>> extends Error {
-	constructor(public readonly promise: T, message: string) {
+	constructor(
+		public readonly promise: T,
+		message: string,
+	) {
 		super(message);
 	}
 }
 
 export class PromiseCancelledErrorWithId<TKey, T extends Promise<any> = Promise<any>> extends PromiseCancelledError<T> {
-	constructor(public readonly id: TKey, promise: T, message: string) {
+	constructor(
+		public readonly id: TKey,
+		promise: T,
+		message: string,
+	) {
 		super(promise, message);
 	}
 }
@@ -212,7 +219,7 @@ export async function raceAll<TPromise, T>(
 							setTimeout(() => resolve(new PromiseCancelledError(p, 'TIMED OUT')), timeout),
 						),
 					]),
-			  ),
+				),
 	);
 }
 

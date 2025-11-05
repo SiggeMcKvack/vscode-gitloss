@@ -98,7 +98,7 @@ const emptyPromise: Promise<GitBlame | GitDiff | GitLog | undefined> = Promise.r
 const githubAuthenticationScopes = ['repo', 'read:user', 'user:email'];
 
 // Since negative lookbehind isn't supported in all browsers, this leaves out the negative lookbehind condition `(?<!\.lock)` to ensure the branch name doesn't end with `.lock`
-const validBranchOrTagRegex = /^[^/](?!.*\/\.)(?!.*\.\.)(?!.*\/\/)(?!.*@\{)[^\000-\037\177 ~^:?*[\\]+[^./]$/;
+const validBranchOrTagRegex = /^[^/](?!.*\/\.)(?!.*\.\.)(?!.*\/\/)(?!.*@\{)[^\x00-\x1f\x7f ~^:?*[\\]+[^./]$/;
 
 interface RepositoryInfo {
 	user?: GitUser | null;
@@ -1479,8 +1479,8 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 						options?.ordering === 'date'
 							? 'committer-date'
 							: options?.ordering === 'author-date'
-							? 'author-date'
-							: undefined,
+								? 'author-date'
+								: undefined,
 				},
 			);
 			if (result == null) return undefined;
@@ -1822,8 +1822,8 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 					);
 					const foundFile = isFolderGlob(relativePath)
 						? undefined
-						: files?.find(f => f.path === relativePath) ??
-						  new GitFileChange(
+						: (files?.find(f => f.path === relativePath) ??
+							new GitFileChange(
 								repoPath,
 								relativePath,
 								GitFileIndexStatus.Modified,
@@ -1832,7 +1832,7 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 								commit.changedFiles === 1
 									? { additions: commit.additions ?? 0, deletions: commit.deletions ?? 0, changes: 0 }
 									: undefined,
-						  );
+							));
 
 					c = new GitCommit(
 						this.container,
@@ -2076,7 +2076,7 @@ export class GitHubGitProvider implements GitProvider, Disposable {
 								relativePath,
 								result.values[offset + skip - 1]?.oid ?? GitRevision.deletedOrMissing,
 							),
-					  );
+						);
 			if (current == null || current.sha === GitRevision.deletedOrMissing) return undefined;
 
 			return {

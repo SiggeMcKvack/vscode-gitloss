@@ -161,7 +161,7 @@ export class DiffWithCommand extends Command {
 			const title =
 				args.lhs.title != null && args.rhs.title != null
 					? `${args.lhs.title} ${GlyphChars.ArrowLeftRightLong} ${args.rhs.title}`
-					: args.lhs.title ?? args.rhs.title;
+					: (args.lhs.title ?? args.rhs.title);
 
 			if (args.showOptions == null) {
 				args.showOptions = {};

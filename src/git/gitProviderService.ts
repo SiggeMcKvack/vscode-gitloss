@@ -1665,8 +1665,8 @@ export class GitProviderService implements Disposable {
 				remotesOrRepoPath == null || typeof remotesOrRepoPath === 'string'
 					? remotesOrRepoPath
 					: remotesOrRepoPath instanceof Uri
-					? remotesOrRepoPath.toString()
-					: `${remotesOrRepoPath[0]?.repoPath}|${remotesOrRepoPath?.map(r => r.id).join(',') ?? ''}`
+						? remotesOrRepoPath.toString()
+						: `${remotesOrRepoPath[0]?.repoPath}|${remotesOrRepoPath?.map(r => r.id).join(',') ?? ''}`
 			}|${options?.includeDisconnected ?? false}`,
 	)
 	@log<GitProviderService['getRichRemoteProvider']>({

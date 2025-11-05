@@ -81,13 +81,14 @@ export type StepGenerator =
 	| Generator<QuickPickStep | QuickInputStep | CustomStep, StepResult<void | undefined>, any | undefined>
 	| AsyncGenerator<QuickPickStep | QuickInputStep | CustomStep, StepResult<void | undefined>, any | undefined>;
 
-export type StepItemType<T> = T extends CustomStep<infer U>
-	? U
-	: T extends QuickPickStep<infer U>
-	? U[]
-	: T extends QuickInputStep
-	? string
-	: never;
+export type StepItemType<T> =
+	T extends CustomStep<infer U>
+		? U
+		: T extends QuickPickStep<infer U>
+			? U[]
+			: T extends QuickInputStep
+				? string
+				: never;
 export type StepNavigationKeys = Exclude<Keys, 'left' | 'alt+left' | 'ctrl+left'>;
 export namespace StepResult {
 	export const Break = Symbol('BreakStep');
@@ -107,13 +108,14 @@ export type AsyncStepResultGenerator<T> = AsyncGenerator<
 // export type StepResultGenerator<T> =
 // 	| Generator<QuickPickStep | QuickInputStep, StepResult<T>, any | undefined>
 // 	| AsyncGenerator<QuickPickStep | QuickInputStep, StepResult<T>, any | undefined>;
-export type StepSelection<T> = T extends CustomStep<infer U>
-	? U | Directive
-	: T extends QuickPickStep<infer U>
-	? U[] | Directive
-	: T extends QuickInputStep
-	? string | Directive
-	: never;
+export type StepSelection<T> =
+	T extends CustomStep<infer U>
+		? U | Directive
+		: T extends QuickPickStep<infer U>
+			? U[] | Directive
+			: T extends QuickInputStep
+				? string | Directive
+				: never;
 export type PartialStepState<T = unknown> = Partial<T> & { counter: number; confirm?: boolean; startingStep?: number };
 export type StepState<T = Record<string, unknown>> = T & { counter: number; confirm?: boolean; startingStep?: number };
 
@@ -248,7 +250,7 @@ export abstract class QuickCommand<State = any> implements QuickPickItem {
 		return {
 			counter: 0,
 			...this.initialState,
-			startingStep: limitBackNavigation ? this.initialState?.counter ?? 0 : 0,
+			startingStep: limitBackNavigation ? (this.initialState?.counter ?? 0) : 0,
 		} as PartialStepState<State>;
 	}
 }
@@ -265,7 +267,7 @@ export namespace QuickCommand {
 	) {
 		if (!canStepContinue(step, state, value)) return false;
 
-		const [valid] = (await step.validate?.(value)) ?? [true];
+		const [valid] = (await step.validate?.(value as string | undefined)) ?? [true];
 		if (valid) {
 			state.counter++;
 			return true;

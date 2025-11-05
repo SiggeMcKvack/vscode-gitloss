@@ -46,7 +46,7 @@ export class OpenRevisionFileCommand extends ActiveEditorCommand {
 									(await commit.getPreviousSha()) ?? GitRevision.deletedOrMissing,
 									commit.file,
 									commit.repoPath,
-							  )
+								)
 							: this.container.git.getRevisionUri(gitUri);
 				} else {
 					args.revisionUri = this.container.git.getRevisionUri(gitUri);

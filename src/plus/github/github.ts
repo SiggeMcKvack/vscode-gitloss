@@ -670,7 +670,7 @@ export class GitHubApi {
 			const { commit } = result;
 			return {
 				oid: result.sha,
-				parents: { nodes: result.parents.map(p => ({ oid: p.sha })) },
+				parents: { nodes: result.parents.map((p: any) => ({ oid: p.sha })) },
 				message: commit.message,
 				additions: result.stats?.additions,
 				changedFiles: result.files?.length,
@@ -1029,7 +1029,7 @@ export class GitHubApi {
 						? {
 								cursor: history.pageInfo.endCursor ?? undefined,
 								more: history.pageInfo.hasNextPage,
-						  }
+							}
 						: undefined,
 				values: history.nodes,
 				viewer: rsp?.viewer.name,
@@ -1612,9 +1612,9 @@ export class GitHubApi {
 			const data = rsp?.data;
 			if (data == null || data.items.length === 0) return undefined;
 
-			const commits = data.items.map<GitHubCommit>(result => ({
+			const commits = data.items.map<GitHubCommit>((result: any) => ({
 				oid: result.sha,
-				parents: { nodes: result.parents.map(p => ({ oid: p.sha! })) },
+				parents: { nodes: result.parents.map((p: any) => ({ oid: p.sha! })) },
 				message: result.commit.message,
 				author: {
 					avatarUrl: result.author?.avatar_url ?? undefined,
@@ -1727,7 +1727,7 @@ export class GitHubApi {
 		options?: R extends keyof Endpoints ? Endpoints[R]['parameters'] & RequestParameters : RequestParameters,
 	): Promise<R extends keyof Endpoints ? Endpoints[R]['response'] : OctokitResponse<unknown>> {
 		try {
-			return (await this.octokit(token).request<R>(route, options)) as any;
+			return (await this.octokit(token).request<R>(route as any, options)) as any;
 		} catch (ex) {
 			if (ex instanceof RequestError) {
 				this.handleRequestError(ex);
@@ -1916,8 +1916,8 @@ export namespace GitHubPullRequest {
 		return state === 'MERGED'
 			? PullRequestState.Merged
 			: state === 'CLOSED'
-			? PullRequestState.Closed
-			: PullRequestState.Open;
+				? PullRequestState.Closed
+				: PullRequestState.Open;
 	}
 
 	export function toState(state: PullRequestState): GitHubPullRequestState {

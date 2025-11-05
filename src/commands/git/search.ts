@@ -196,7 +196,7 @@ export class SearchGitCommand extends QuickCommand<State> {
 							? `No results for ${state.pattern}`
 							: `${pluralize('result', log.count, {
 									format: c => (log.hasMore ? `${c}+` : undefined),
-							  })} for ${state.pattern}`,
+								})} for ${state.pattern}`,
 					picked: context.commit?.ref,
 					showInSideBarCommand: new ActionQuickPickItem(
 						'$(link-external)  Show Results in Side Bar',
@@ -284,14 +284,14 @@ export class SearchGitCommand extends QuickCommand<State> {
 						label: searchOperatorToTitleMap.get('file:')!,
 						description: 'file: glob or ?: glob',
 						item: 'file:' as const,
-				  },
+					},
 			context.hasVirtualFolders
 				? undefined
 				: {
 						label: searchOperatorToTitleMap.get('change:')!,
 						description: 'change: pattern or ~: pattern',
 						item: 'change:' as const,
-				  },
+					},
 		].filter(<T>(i?: T): i is T => i != null);
 
 		const matchCaseButton = new QuickCommandButtons.MatchCaseToggle(state.matchCase);
@@ -343,7 +343,7 @@ export class SearchGitCommand extends QuickCommand<State> {
 				quickpick.title = appendReposToTitle(
 					operations.size === 0 || operations.size > 1
 						? context.title
-						: `Commit ${searchOperatorToTitleMap.get(operations.keys().next().value)!}`,
+						: `Commit ${searchOperatorToTitleMap.get(operations.keys().next().value! as SearchOperators)!}`,
 					state,
 					context,
 				);

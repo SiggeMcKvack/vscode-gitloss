@@ -26,7 +26,11 @@ export class ReflogRecordNode extends ViewNode<ViewsWithCommits> implements Page
 		}|${date.getTime()})`;
 	}
 
-	constructor(view: ViewsWithCommits, parent: ViewNode, public readonly record: GitReflogRecord) {
+	constructor(
+		view: ViewsWithCommits,
+		parent: ViewNode,
+		public readonly record: GitReflogRecord,
+	) {
 		super(GitUri.fromRepoPath(record.repoPath), view, parent);
 	}
 

@@ -33,12 +33,12 @@ export class CommitFilesQuickPickItem extends CommandQuickPickItem {
 								expand: true,
 								separator: ', ',
 								prefix: ` ${GlyphChars.Dot} `,
-						  })}`
+							})}`
 						: `$(files) ${commit.formatStats({
 								expand: true,
 								separator: ', ',
 								empty: 'No files changed',
-						  })}`
+							})}`
 				}${options?.hint != null ? `${pad(GlyphChars.Dash, 4, 2, GlyphChars.Space)}${options.hint}` : ''}`,
 				alwaysShow: true,
 				picked: options?.picked ?? true,
@@ -58,7 +58,11 @@ export class CommitFilesQuickPickItem extends CommandQuickPickItem {
 }
 
 export class CommitFileQuickPickItem extends CommandQuickPickItem {
-	constructor(readonly commit: GitCommit, readonly file: GitFile, picked?: boolean) {
+	constructor(
+		readonly commit: GitCommit,
+		readonly file: GitFile,
+		picked?: boolean,
+	) {
 		super({
 			label: `${pad(GitFile.getStatusCodicon(file.status), 0, 2)}${basename(file.path)}`,
 			description: GitFile.getFormattedDirectory(file, true),
@@ -120,7 +124,10 @@ export class CommitBrowseRepositoryFromHereCommandQuickPickItem extends CommandQ
 }
 
 export class CommitCompareWithHEADCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(compare-changes) Compare with HEAD');
 	}
 
@@ -130,7 +137,10 @@ export class CommitCompareWithHEADCommandQuickPickItem extends CommandQuickPickI
 }
 
 export class CommitCompareWithWorkingCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(compare-changes) Compare with Working Tree');
 	}
 
@@ -140,7 +150,10 @@ export class CommitCompareWithWorkingCommandQuickPickItem extends CommandQuickPi
 }
 
 export class CommitCopyIdQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(copy) Copy SHA');
 	}
 
@@ -155,7 +168,10 @@ export class CommitCopyIdQuickPickItem extends CommandQuickPickItem {
 }
 
 export class CommitCopyMessageQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(copy) Copy Message');
 	}
 
@@ -172,7 +188,10 @@ export class CommitCopyMessageQuickPickItem extends CommandQuickPickItem {
 }
 
 export class CommitOpenAllChangesCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open All Changes');
 	}
 
@@ -182,7 +201,10 @@ export class CommitOpenAllChangesCommandQuickPickItem extends CommandQuickPickIt
 }
 
 export class CommitOpenAllChangesWithDiffToolCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open All Changes (difftool)');
 	}
 
@@ -192,7 +214,10 @@ export class CommitOpenAllChangesWithDiffToolCommandQuickPickItem extends Comman
 }
 
 export class CommitOpenAllChangesWithWorkingCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open All Changes with Working Tree');
 	}
 
@@ -202,7 +227,11 @@ export class CommitOpenAllChangesWithWorkingCommandQuickPickItem extends Command
 }
 
 export class CommitOpenChangesCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, private readonly file: string | GitFile, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		private readonly file: string | GitFile,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open Changes');
 	}
 
@@ -212,7 +241,11 @@ export class CommitOpenChangesCommandQuickPickItem extends CommandQuickPickItem 
 }
 
 export class CommitOpenChangesWithDiffToolCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, private readonly file: string | GitFile, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		private readonly file: string | GitFile,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open Changes (difftool)');
 	}
 
@@ -222,7 +255,11 @@ export class CommitOpenChangesWithDiffToolCommandQuickPickItem extends CommandQu
 }
 
 export class CommitOpenChangesWithWorkingCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, private readonly file: string | GitFile, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		private readonly file: string | GitFile,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open Changes with Working File');
 	}
 
@@ -232,7 +269,10 @@ export class CommitOpenChangesWithWorkingCommandQuickPickItem extends CommandQui
 }
 
 export class CommitOpenDirectoryCompareCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open Directory Compare');
 	}
 
@@ -242,7 +282,10 @@ export class CommitOpenDirectoryCompareCommandQuickPickItem extends CommandQuick
 }
 
 export class CommitOpenDirectoryCompareWithWorkingCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(git-compare) Open Directory Compare with Working Tree');
 	}
 
@@ -252,7 +295,10 @@ export class CommitOpenDirectoryCompareWithWorkingCommandQuickPickItem extends C
 }
 
 export class CommitOpenFilesCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(files) Open Files');
 	}
 
@@ -262,7 +308,11 @@ export class CommitOpenFilesCommandQuickPickItem extends CommandQuickPickItem {
 }
 
 export class CommitOpenFileCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, private readonly file: string | GitFile, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		private readonly file: string | GitFile,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(file) Open File');
 	}
 
@@ -272,7 +322,10 @@ export class CommitOpenFileCommandQuickPickItem extends CommandQuickPickItem {
 }
 
 export class CommitOpenRevisionsCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(files) Open Files at Revision');
 	}
 
@@ -282,7 +335,11 @@ export class CommitOpenRevisionsCommandQuickPickItem extends CommandQuickPickIte
 }
 
 export class CommitOpenRevisionCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, private readonly file: string | GitFile, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		private readonly file: string | GitFile,
+		item?: QuickPickItem,
+	) {
 		super(item ?? '$(file) Open File at Revision');
 	}
 
@@ -292,7 +349,11 @@ export class CommitOpenRevisionCommandQuickPickItem extends CommandQuickPickItem
 }
 
 export class CommitApplyFileChangesCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, private readonly file: string | GitFile, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		private readonly file: string | GitFile,
+		item?: QuickPickItem,
+	) {
 		super(item ?? 'Apply Changes');
 	}
 
@@ -302,7 +363,11 @@ export class CommitApplyFileChangesCommandQuickPickItem extends CommandQuickPick
 }
 
 export class CommitRestoreFileChangesCommandQuickPickItem extends CommandQuickPickItem {
-	constructor(private readonly commit: GitCommit, private readonly file: string | GitFile, item?: QuickPickItem) {
+	constructor(
+		private readonly commit: GitCommit,
+		private readonly file: string | GitFile,
+		item?: QuickPickItem,
+	) {
 		super(
 			item ?? {
 				label: 'Restore',

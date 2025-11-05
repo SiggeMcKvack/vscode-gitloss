@@ -72,7 +72,7 @@ export class FileHistoryNode extends SubscribeableViewNode<FileHistoryView> impl
 				? this.view.container.git.getLogRefsOnly(this.uri.repoPath!, {
 						limit: 0,
 						ref: range,
-				  })
+					})
 				: undefined,
 		]);
 
@@ -114,14 +114,14 @@ export class FileHistoryNode extends SubscribeableViewNode<FileHistoryView> impl
 									{
 										expand: false,
 									},
-							  )
+								)
 							: c.file != null
-							? new FileRevisionAsCommitNode(this.view, this, c.file, c, {
-									branch: this.branch,
-									getBranchAndTagTips: getBranchAndTagTips,
-									unpublished: unpublishedCommits?.has(c.ref),
-							  })
-							: undefined,
+								? new FileRevisionAsCommitNode(this.view, this, c.file, c, {
+										branch: this.branch,
+										getBranchAndTagTips: getBranchAndTagTips,
+										unpublished: unpublishedCommits?.has(c.ref),
+									})
+								: undefined,
 					),
 					this,
 				),

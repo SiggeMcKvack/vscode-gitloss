@@ -119,7 +119,7 @@ export class RemoteNode extends ViewNode<RemotesView | RepositoriesView> {
 					: {
 							dark: this.view.container.context.asAbsolutePath(`images/dark/icon-${provider.icon}.svg`),
 							light: this.view.container.context.asAbsolutePath(`images/light/icon-${provider.icon}.svg`),
-					  };
+						};
 
 			if (provider.hasRichApi()) {
 				const connected = provider.maybeConnected ?? (await provider.isConnected());

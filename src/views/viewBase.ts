@@ -71,20 +71,21 @@ export interface TreeViewNodeCollapsibleStateChangeEvent<T> extends TreeViewExpa
 }
 
 export abstract class ViewBase<
-	RootNode extends ViewNode<View>,
-	ViewConfig extends
-		| BranchesViewConfig
-		| ContributorsViewConfig
-		| FileHistoryViewConfig
-		| CommitsViewConfig
-		| LineHistoryViewConfig
-		| RemotesViewConfig
-		| RepositoriesViewConfig
-		| SearchAndCompareViewConfig
-		| StashesViewConfig
-		| TagsViewConfig
-		| WorktreesViewConfig,
-> implements TreeDataProvider<ViewNode>, Disposable
+		RootNode extends ViewNode<View>,
+		ViewConfig extends
+			| BranchesViewConfig
+			| ContributorsViewConfig
+			| FileHistoryViewConfig
+			| CommitsViewConfig
+			| LineHistoryViewConfig
+			| RemotesViewConfig
+			| RepositoriesViewConfig
+			| SearchAndCompareViewConfig
+			| StashesViewConfig
+			| TagsViewConfig
+			| WorktreesViewConfig,
+	>
+	implements TreeDataProvider<ViewNode>, Disposable
 {
 	protected _onDidChangeTreeData = new EventEmitter<ViewNode | undefined>();
 	get onDidChangeTreeData(): Event<ViewNode | undefined> {
@@ -118,7 +119,7 @@ export abstract class ViewBase<
 			function addDebuggingInfo(item: TreeItem, node: ViewNode, parent: ViewNode | undefined) {
 				if (item.tooltip == null) {
 					item.tooltip = new MarkdownString(
-						item.label != null && typeof item.label !== 'string' ? item.label.label : item.label ?? '',
+						item.label != null && typeof item.label !== 'string' ? item.label.label : (item.label ?? ''),
 					);
 				}
 

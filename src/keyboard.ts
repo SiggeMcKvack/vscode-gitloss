@@ -22,7 +22,7 @@ export const keys = [
 	'alt+.',
 	'escape',
 ] as const;
-export type Keys = typeof keys[number];
+export type Keys = (typeof keys)[number];
 
 export type KeyMapping = { [K in Keys]?: KeyCommand | (() => Promise<KeyCommand>) };
 type IndexableKeyMapping = KeyMapping & {
@@ -95,10 +95,13 @@ export class KeyboardScope implements Disposable {
 		if (this._paused) return;
 
 		this._paused = true;
-		const mapping = (Object.keys(this._mapping) as Keys[]).reduce((accumulator, key) => {
-			accumulator[key] = keys == null || keys.includes(key) ? undefined : this._mapping[key];
-			return accumulator;
-		}, Object.create(null) as KeyMapping);
+		const mapping = (Object.keys(this._mapping) as Keys[]).reduce(
+			(accumulator, key) => {
+				accumulator[key] = keys == null || keys.includes(key) ? undefined : this._mapping[key];
+				return accumulator;
+			},
+			Object.create(null) as KeyMapping,
+		);
 
 		await this.updateKeyCommandsContext(mapping);
 	}

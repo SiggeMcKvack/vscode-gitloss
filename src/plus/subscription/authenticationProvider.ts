@@ -38,7 +38,10 @@ export class SubscriptionAuthenticationProvider implements AuthenticationProvide
 	private readonly _disposable: Disposable;
 	private _sessionsPromise: Promise<AuthenticationSession[]>;
 
-	constructor(private readonly container: Container, private readonly server: ServerConnection) {
+	constructor(
+		private readonly container: Container,
+		private readonly server: ServerConnection,
+	) {
 		// Contains the current state of the sessions we have available.
 		this._sessionsPromise = this.getSessionsFromStorage();
 
@@ -258,8 +261,8 @@ export class SubscriptionAuthenticationProvider implements AuthenticationProvide
 				account: {
 					label:
 						session.account != null
-							? session.account.label ?? session.account.displayName ?? '<unknown>'
-							: userInfo?.accountName ?? '<unknown>',
+							? (session.account.label ?? session.account.displayName ?? '<unknown>')
+							: (userInfo?.accountName ?? '<unknown>'),
 					id: session.account?.id ?? userInfo?.id ?? '<unknown>',
 				},
 				scopes: session.scopes,

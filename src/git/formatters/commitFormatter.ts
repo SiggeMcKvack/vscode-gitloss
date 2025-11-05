@@ -389,7 +389,7 @@ export class CommitFormatter extends Formatter<GitCommit, CommitFormatOptions> {
 						? {
 								uri: this._options.editor?.uri.toString(),
 								line: this._options.editor?.line,
-						  }
+							}
 						: undefined,
 			})} "Show Team Actions")`;
 		}
@@ -399,7 +399,7 @@ export class CommitFormatter extends Formatter<GitCommit, CommitFormatOptions> {
 			gitUri != null
 				? {
 						revisionUri: Container.instance.git.getRevisionUri(gitUri).toString(true),
-				  }
+					}
 				: { commit: this._item },
 		)} "Show More Actions")`;
 
@@ -450,7 +450,7 @@ export class CommitFormatter extends Formatter<GitCommit, CommitFormatOptions> {
 							this._options.markdown ? footnote : `${getSuperscript(i)} ${footnote}`,
 						),
 						this._options.markdown ? '\\\n' : '\n',
-				  ),
+					),
 			this._options.tokenOptions.footnotes,
 		);
 	}
@@ -492,7 +492,7 @@ export class CommitFormatter extends Formatter<GitCommit, CommitFormatOptions> {
 
 		let message = this._options.messageTruncateAtNewLine
 			? this._item.summary
-			: this._item.message ?? this._item.summary;
+			: (this._item.message ?? this._item.summary);
 
 		message = emojify(message);
 		message = this._padOrTruncate(message, this._options.tokenOptions.message);
@@ -558,7 +558,7 @@ export class CommitFormatter extends Formatter<GitCommit, CommitFormatOptions> {
 		} else if (pr instanceof PromiseCancelledError) {
 			text = this._options.markdown
 				? `[PR $(loading~spin)](command:${Commands.RefreshHover} "Searching for a Pull Request (if any) that introduced this commit...")`
-				: this._options?.pullRequestPendingMessage ?? '';
+				: (this._options?.pullRequestPendingMessage ?? '');
 		} else {
 			return this._padOrTruncate('', this._options.tokenOptions.pullRequest);
 		}
@@ -581,7 +581,7 @@ export class CommitFormatter extends Formatter<GitCommit, CommitFormatOptions> {
 	get pullRequestState(): string {
 		const { pullRequestOrRemote: pr } = this._options;
 		return this._padOrTruncate(
-			pr == null || !PullRequest.is(pr) ? '' : pr.state ?? '',
+			pr == null || !PullRequest.is(pr) ? '' : (pr.state ?? ''),
 			this._options.tokenOptions.pullRequestState,
 		);
 	}

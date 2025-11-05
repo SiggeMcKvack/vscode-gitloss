@@ -366,7 +366,7 @@ export class GitCodeLensProvider implements CodeLensProvider {
 				break;
 		}
 
-		return valid ? range ?? getRangeFromSymbol(symbol) : undefined;
+		return valid ? (range ?? getRangeFromSymbol(symbol)) : undefined;
 	}
 
 	private provideCodeLens(

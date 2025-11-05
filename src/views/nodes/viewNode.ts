@@ -101,7 +101,11 @@ export abstract class ViewNode<TView extends View = View> {
 
 	protected splatted = false;
 
-	constructor(uri: GitUri, public readonly view: TView, protected readonly parent?: ViewNode) {
+	constructor(
+		uri: GitUri,
+		public readonly view: TView,
+		protected readonly parent?: ViewNode,
+	) {
 		this._uri = uri;
 	}
 
@@ -421,7 +425,7 @@ export abstract class RepositoryFolderNode<
 						? `${pad(GlyphChars.Dash, 2, 2)}Last fetched ${Repository.formatLastFetched(
 								lastFetched,
 								false,
-						  )}`
+							)}`
 						: ''
 				}${this.repo.formattedName ? `\n${this.uri.repoPath}` : ''}\n\nCurrent branch $(git-branch) ${
 					branch.name
@@ -432,21 +436,21 @@ export abstract class RepositoryFolderNode<
 									? `missing upstream $(git-branch) ${branch.upstream.name}`
 									: `up to date with $(git-branch) ${branch.upstream.name}${
 											providerName ? ` on ${providerName}` : ''
-									  }`,
+										}`,
 								expand: true,
 								icons: true,
 								separator: ', ',
 								suffix: ` $(git-branch) ${branch.upstream.name}${
 									providerName ? ` on ${providerName}` : ''
 								}`,
-						  })}`
+							})}`
 						: `hasn't been published to ${providerName ?? 'a remote'}`
 				}`,
 				true,
 			);
 		} else {
 			item.tooltip = `${
-				this.repo.formattedName ? `${this.repo.formattedName}\n${this.uri.repoPath}` : this.uri.repoPath ?? ''
+				this.repo.formattedName ? `${this.repo.formattedName}\n${this.uri.repoPath}` : (this.uri.repoPath ?? '')
 			}`;
 		}
 
@@ -508,7 +512,7 @@ export abstract class RepositoryFolderNode<
 		}
 
 		if (this.changed(e)) {
-			void (this.loaded ? this : this.parent ?? this).triggerChange(true);
+			void (this.loaded ? this : (this.parent ?? this)).triggerChange(true);
 		}
 	}
 }

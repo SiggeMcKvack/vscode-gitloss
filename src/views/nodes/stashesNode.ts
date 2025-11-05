@@ -19,7 +19,12 @@ export class StashesNode extends ViewNode<StashesView | RepositoriesView> {
 
 	private _children: ViewNode[] | undefined;
 
-	constructor(uri: GitUri, view: StashesView | RepositoriesView, parent: ViewNode, public readonly repo: Repository) {
+	constructor(
+		uri: GitUri,
+		view: StashesView | RepositoriesView,
+		parent: ViewNode,
+		public readonly repo: Repository,
+	) {
 		super(uri, view, parent);
 	}
 

@@ -21,7 +21,12 @@ export class TagsNode extends ViewNode<TagsView | RepositoriesView> {
 
 	private _children: ViewNode[] | undefined;
 
-	constructor(uri: GitUri, view: TagsView | RepositoriesView, parent: ViewNode, public readonly repo: Repository) {
+	constructor(
+		uri: GitUri,
+		view: TagsView | RepositoriesView,
+		parent: ViewNode,
+		public readonly repo: Repository,
+	) {
 		super(uri, view, parent);
 	}
 

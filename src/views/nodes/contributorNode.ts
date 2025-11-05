@@ -127,11 +127,11 @@ export class ContributorNode extends ViewNode<ContributorsView | RepositoriesVie
 			this.contributor.stats != null
 				? `\\\n${pluralize('file', this.contributor.stats.files, {
 						format: numberFormatter.format,
-				  })} changed, ${pluralize('addition', this.contributor.stats.additions, {
+					})} changed, ${pluralize('addition', this.contributor.stats.additions, {
 						format: numberFormatter.format,
-				  })}, ${pluralize('deletion', this.contributor.stats.deletions, {
+					})}, ${pluralize('deletion', this.contributor.stats.deletions, {
 						format: numberFormatter.format,
-				  })}`
+					})}`
 				: '';
 
 		const link = this.contributor.email

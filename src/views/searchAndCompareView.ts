@@ -238,7 +238,7 @@ export class SearchAndCompareViewNode extends ViewNode<SearchAndCompareView> {
 	private getRefName(ref: string | NamedRef) {
 		return typeof ref === 'string'
 			? GitRevision.shorten(ref, { strings: { working: 'Working Tree' } })!
-			: ref.label ?? GitRevision.shorten(ref.ref)!;
+			: (ref.label ?? GitRevision.shorten(ref.ref)!);
 	}
 
 	private removeComparePicker(silent: boolean = false) {

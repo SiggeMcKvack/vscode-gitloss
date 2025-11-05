@@ -81,7 +81,7 @@ export class OpenCommitOnRemoteCommand extends ActiveEditorCommand {
 
 				// If the line is uncommitted, use previous commit
 				args.sha = blame.commit.isUncommitted
-					? (await blame.commit.getPreviousSha()) ?? GitRevision.deletedOrMissing
+					? ((await blame.commit.getPreviousSha()) ?? GitRevision.deletedOrMissing)
 					: blame.commit.sha;
 			}
 

@@ -180,10 +180,9 @@ export function normalizePath(path: string): string {
 		path = path.slice(0, -1);
 	}
 
-	if (isWindows) {
-		// Ensure that drive casing is normalized (lower case)
-		path = path.replace(driveLetterNormalizeRegex, d => d.toLowerCase());
-	}
+	// Ensure that drive casing is normalized (lower case) on all platforms
+	// This ensures consistent behavior in tests and cross-platform compatibility
+	path = path.replace(driveLetterNormalizeRegex, d => d.toLowerCase());
 
 	return path;
 }
@@ -226,9 +225,8 @@ export function splitPath(
 		if (index > 0) {
 			repoPath = pathOrUri.substring(0, index);
 			pathOrUri = pathOrUri.substring(index + 1);
-		} else if (pathOrUri.charCodeAt(0) === slash) {
-			pathOrUri = pathOrUri.slice(1);
 		}
+		// When there's no match (index === 0), preserve the paths as-is
 
 		if (repoUri != null) {
 			repoPath = repoUri.with({ path: repoPath }).toString();

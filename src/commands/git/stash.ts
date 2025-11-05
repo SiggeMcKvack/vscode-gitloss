@@ -328,10 +328,10 @@ export class StashGitCommand extends QuickCommand<State> {
 						state.subcommand === 'pop'
 							? `Will delete ${GitReference.toString(
 									state.reference,
-							  )} and apply the changes to the working tree`
+								)} and apply the changes to the working tree`
 							: `Will apply the changes from ${GitReference.toString(
 									state.reference,
-							  )} to the working tree`,
+								)} to the working tree`,
 					item: state.subcommand,
 				},
 				// Alternate confirmation (if pop then apply, and vice versa)
@@ -341,10 +341,10 @@ export class StashGitCommand extends QuickCommand<State> {
 						state.subcommand === 'pop'
 							? `Will apply the changes from ${GitReference.toString(
 									state.reference,
-							  )} to the working tree`
+								)} to the working tree`
 							: `Will delete ${GitReference.toString(
 									state.reference,
-							  )} and apply the changes to the working tree`,
+								)} and apply the changes to the working tree`,
 					item: state.subcommand === 'pop' ? 'apply' : 'pop',
 				},
 			],
@@ -518,7 +518,7 @@ export class StashGitCommand extends QuickCommand<State> {
 							state.uris.length === 1
 								? formatPath(state.uris[0], { fileOnly: true })
 								: `${state.uris.length} files`
-					  }`
+						}`
 					: undefined,
 			),
 			placeholder: 'Please provide a stash message',
@@ -556,7 +556,7 @@ export class StashGitCommand extends QuickCommand<State> {
 							description: '--keep-index',
 							detail: 'Will stash uncommitted changes, but will keep staged files intact',
 						}),
-				  ]
+					]
 				: [
 						FlagsQuickPickItem.create<PushFlags>(state.flags, [], {
 							label: context.title,
@@ -574,7 +574,7 @@ export class StashGitCommand extends QuickCommand<State> {
 									: `${state.uris.length} files`
 							}, but will keep staged files intact`,
 						}),
-				  ],
+					],
 			undefined,
 			{ placeholder: `Confirm ${context.title}` },
 		);

@@ -195,7 +195,10 @@ export class LocalGitProvider implements GitProvider, Disposable {
 
 	private _disposables: Disposable[] = [];
 
-	constructor(protected readonly container: Container, protected readonly git: Git) {
+	constructor(
+		protected readonly container: Container,
+		protected readonly git: Git,
+	) {
 		this.git.setLocator(this.ensureGit.bind(this));
 	}
 
@@ -1611,7 +1614,7 @@ export class LocalGitProvider implements GitProvider, Disposable {
 									prefix: '%x00',
 									fieldSuffix: '%x00',
 									skip: 1,
-							  }
+								}
 							: undefined,
 					);
 
@@ -2692,7 +2695,7 @@ export class LocalGitProvider implements GitProvider, Disposable {
 									refType: 'branch',
 									name: possibleSourceBranches[0],
 									remote: false,
-							  })
+								})
 							: undefined,
 				};
 			}
@@ -2751,7 +2754,7 @@ export class LocalGitProvider implements GitProvider, Disposable {
 									refType: 'branch',
 									name: possibleSourceBranch,
 									remote: false,
-							  })
+								})
 							: undefined,
 
 					incoming: GitReference.create(branch, repoPath, {

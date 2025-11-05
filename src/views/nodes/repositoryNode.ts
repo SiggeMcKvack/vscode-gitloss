@@ -43,7 +43,12 @@ export class RepositoryNode extends SubscribeableViewNode<RepositoriesView> {
 	private _children: ViewNode[] | undefined;
 	private _status: Promise<GitStatus | undefined>;
 
-	constructor(uri: GitUri, view: RepositoriesView, parent: ViewNode, public readonly repo: Repository) {
+	constructor(
+		uri: GitUri,
+		view: RepositoriesView,
+		parent: ViewNode,
+		public readonly repo: Repository,
+	) {
 		super(uri, view, parent);
 
 		this._status = this.repo.getStatus();

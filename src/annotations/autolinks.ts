@@ -227,7 +227,7 @@ export class Autolinks implements Disposable {
 								? 'Details timed out'
 								: `${issue.title}  ${GlyphChars.Dot}  ${issue.closed ? 'Closed' : 'Opened'}, ${fromNow(
 										issue.closedDate ?? issue.date,
-								  )}`
+									)}`
 						}`,
 					);
 					return `${linkText}${getSuperscript(index)}`;
@@ -237,7 +237,7 @@ export class Autolinks implements Disposable {
 					? `${text}\n${GlyphChars.Dash.repeat(2)}\n${join(
 							map(footnotes, ([i, footnote]) => `${getSuperscript(i)} ${footnote}`),
 							'\n',
-					  )}`
+						)}`
 					: text;
 			};
 		} catch (ex) {

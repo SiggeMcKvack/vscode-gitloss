@@ -365,7 +365,7 @@ export namespace GitActions {
 						// Don't need to worry about verifying the previous sha, as the DiffWith command will
 						ref1: commitOrRefs.unresolvedPreviousSha,
 						ref2: commitOrRefs.sha,
-				  }
+					}
 				: commitOrRefs;
 
 			options = { preserveFocus: true, preview: false, ...options };
@@ -549,7 +549,9 @@ export namespace GitActions {
 				}
 
 				uri = Container.instance.git.getRevisionUri(
-					file.status === 'D' ? (await commit.getPreviousSha()) ?? GitRevision.deletedOrMissing : commit.sha,
+					file.status === 'D'
+						? ((await commit.getPreviousSha()) ?? GitRevision.deletedOrMissing)
+						: commit.sha,
 					file,
 					commit.repoPath,
 				);

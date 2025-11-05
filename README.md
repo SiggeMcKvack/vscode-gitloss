@@ -67,37 +67,7 @@ Here are just some of the **features** that GitLens provides,
 - user-defined [**modes**](#modes- 'Jump to Modes') for quickly toggling between sets of settings
 - and so much more 😁
 
-# Introducing GitLens+ [#](#introducing-gitlens+-features- 'GitLens+ features')
-
-GitLens+ adds all-new, completely optional, features that enhance your current GitLens experience when you sign in with a free account. A free GitLens+ account gives you access to these new GitLens+ features on public repos, while a paid account allows you to use them on private repos. Learn more about [ GitLens+ features](https://gitkraken.com/gitlens/plus-features).
-
-🛈 All other GitLens features are always accessible, without an account, and will continue to evolve and be invested in.
-
-## Does this affect existing features?
-
-No, the introduction of GitLens+ has no impact on existing GitLens features, so you won't lose access to any of the GitLens features you know and love. In fact, we are heavily investing in enhancing and expanding the GitLens feature set. Creating an account simply gives you access to a subset of new features that will enable you to get even more out of Git in VS Code!
-
 ## Visual File History view [#](#visual-file-history-view- 'Visual File History view')
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/gitkraken/vscode-gitlens/main/images/docs/visual-file-history-hover.png" alt="Visual File History view" />
-</p>
-
-The Visual File History view allows you to quickly see the evolution of a file, including when changes were made, how large they were, and who made them.
-
-Authors who have contributed changes to the file are on the left y-axis to create a swim-lane of their commits over time (the x-axis). Commit are plotted as color-coded (per-author) bubbles, whose size represents the relative magnitude of the changes.
-
-Additionally, each commit's additions and deletions are visualized as color-coded, stacked, vertical bars, whose height represents the number of affected lines (right y-axis). Added lines are shown in green, while deleted lines are red.
-
-## Worktrees view [#](#worktrees-view- 'Worktrees view')
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/gitkraken/vscode-gitlens/main/images/docs/worktrees-view.png" alt="Worktrees view" />
-</p>
-
-Worktrees allow you to easily work on different branches of a repository simultaneously. You can create multiple working trees, each of which can be opened in individual windows or all together in a single workspace.
-
-# Features
 
 ## Revision Navigation [#](#revision-navigation- 'Revision Navigation')
 
@@ -130,11 +100,9 @@ Worktrees allow you to easily work on different branches of a repository simulta
 </p>
 
 - Adds Git authorship **CodeLens** to the top of the file and on code blocks ([optional](#git-codelens-settings- 'Jump to the Git CodeLens settings'), on by default)
-
   - **Recent Change** &mdash; author and date of the most recent commit for the file or code block
     - Click the CodeLens to show a **commit file details quick pick menu** with commands for comparing, navigating and exploring commits, and more (by [default](#git-codelens-settings- 'Jump to the Git CodeLens settings'))
   - **Authors** &mdash; number of authors of the file or code block and the most prominent author (if there is more than one)
-
     - Click the CodeLens to toggle the file Git blame annotations on and off of the whole file (by [default](#git-codelens-settings- 'Jump to the Git CodeLens settings'))
     - Will be hidden if the author of the most recent commit is also the only author of the file or block, to avoid duplicate information and reduce visual noise
 
@@ -155,7 +123,6 @@ Worktrees allow you to easily work on different branches of a repository simulta
 </p>
 
 - Adds a [customizable](#status-bar-settings- 'Jump to the Status Bar Blame settings') **Git blame annotation** showing the commit and author who last modified the current line to the **status bar** ([optional](#status-bar-settings- 'Jump to the Status Bar Blame settings'), on by default)
-
   - Contains the commit author and date (by [default](#status-bar-settings- 'Jump to the Status Bar Blame settings'))
   - Click the status bar item to show a **commit details quick pick menu** with commands for comparing, navigating and exploring commits, and more (by [default](#status-bar-settings- 'Jump to the Status Bar Blame settings'))
 
@@ -525,7 +492,6 @@ The _Search & Compare_ view lists pinnable (saved) results for searching commit 
 </p>
 
 - Adds a [customizable](#git-command-palette-settings- 'Jump to the Git Command Palette settings') _Git Command Palette_ command (`gitlens.gitCommands`) to provide guided (step-by-step) access to many common Git commands, as well as quick access to commit history and search, stashes, and more
-
   - Quickly navigate and execute Git commands through easy-to-use menus where each command can require an explicit confirmation step before executing
 
 ### Quick Commit Access [#](#quick-commit-access- 'Quick Commit Access')
@@ -595,7 +561,6 @@ The _Search & Compare_ view lists pinnable (saved) results for searching commit 
   - Quickly re-order, edit, squash, and drop commits
   - Includes drag & drop support!
 - To use this directly from your terminal, e.g. when running `git rebase -i`,
-
   - set VS Code as your default Git editor
     - `git config --global core.editor "code --wait"`
   - or, to only affect rebase, set VS Code as your Git rebase editor

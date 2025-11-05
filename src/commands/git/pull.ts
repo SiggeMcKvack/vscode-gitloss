@@ -182,7 +182,7 @@ export class PullGitCommand extends QuickCommand<State> {
 								branch.state.behind
 									? ` ${pluralize('commit', branch.state.behind)} into ${GitReference.toString(
 											branch,
-									  )}`
+										)}`
 									: ` into ${GitReference.toString(branch)}`
 							}`,
 						}),

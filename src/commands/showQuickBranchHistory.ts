@@ -44,7 +44,7 @@ export class ShowQuickBranchHistoryCommand extends ActiveEditorCachedCommand {
 								refType: 'branch',
 								name: args.branch,
 								remote: false,
-						  });
+							});
 			} else if (args?.tag != null) {
 				ref = GitReference.create(args.tag, repoPath, { refType: 'tag', name: args.tag });
 			}

@@ -318,7 +318,8 @@ export class GitCommit implements GitRevisionReference {
 		if (stats == null) return options?.empty ?? '';
 
 		const { changedFiles, additions, deletions } = stats;
-		if (changedFiles <= 0 && additions <= 0 && deletions <= 0) return options?.empty ?? '';
+		const changedFilesCount = typeof changedFiles === 'number' ? changedFiles : changedFiles.changed;
+		if (changedFilesCount <= 0 && additions <= 0 && deletions <= 0) return options?.empty ?? '';
 
 		const {
 			compact = false,
@@ -437,7 +438,7 @@ export class GitCommit implements GitRevisionReference {
 					this.file.uri,
 					editorLine,
 					ref ?? (this.sha === GitRevision.uncommitted ? undefined : this.sha),
-			  )
+				)
 			: Promise.resolve(undefined);
 	}
 

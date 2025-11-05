@@ -23,7 +23,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports =
 	/**
-	 * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean; squoosh?: boolean } | undefined } env
+	 * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean } | undefined } env
 	 * @param {{ mode: 'production' | 'development' | 'none' | undefined }} argv
 	 * @returns { WebpackConfig[] }
 	 */
@@ -34,7 +34,6 @@ module.exports =
 			analyzeBundle: false,
 			analyzeDeps: false,
 			esbuild: true,
-			squoosh: true,
 			...env,
 		};
 
@@ -48,7 +47,7 @@ module.exports =
 /**
  * @param { 'node' | 'webworker' } target
  * @param { 'production' | 'development' | 'none' } mode
- * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean; squoosh?: boolean } | undefined } env
+ * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean } | undefined } env
  * @returns { WebpackConfig }
  */
 function getExtensionConfig(target, mode, env) {
@@ -59,21 +58,6 @@ function getExtensionConfig(target, mode, env) {
 		new CleanPlugin({ cleanOnceBeforeBuildPatterns: ['!dist/webviews/**'] }),
 		new ForkTsCheckerPlugin({
 			async: false,
-			eslint: {
-				enabled: true,
-				files: 'src/**/*.ts',
-				options: {
-					// cache: true,
-					// cacheLocation: path.join(
-					// 	__dirname,
-					// 	target === 'webworker' ? '.eslintcache.browser' : '.eslintcache',
-					// ),
-					overrideConfigFile: path.join(
-						__dirname,
-						target === 'webworker' ? '.eslintrc.browser.json' : '.eslintrc.json',
-					),
-				},
-			},
 			formatter: 'basic',
 			typescript: {
 				configFile: path.join(__dirname, target === 'webworker' ? 'tsconfig.browser.json' : 'tsconfig.json'),
@@ -131,7 +115,7 @@ function getExtensionConfig(target, mode, env) {
 									keepNames: true,
 									target: 'es2020',
 								},
-						  }
+							}
 						: {
 								compress: {
 									drop_debugger: true,
@@ -144,7 +128,7 @@ function getExtensionConfig(target, mode, env) {
 									keep_classnames: true,
 									module: true,
 								},
-						  },
+							},
 				),
 			],
 			splitChunks:
@@ -157,7 +141,7 @@ function getExtensionConfig(target, mode, env) {
 								default: false,
 								vendors: false,
 							},
-					  },
+						},
 		},
 		externals: {
 			vscode: 'commonjs vscode',
@@ -182,7 +166,7 @@ function getExtensionConfig(target, mode, env) {
 										),
 									),
 								},
-						  }
+							}
 						: {
 								loader: 'ts-loader',
 								options: {
@@ -193,7 +177,7 @@ function getExtensionConfig(target, mode, env) {
 									experimentalWatchApi: true,
 									transpileOnly: true,
 								},
-						  },
+							},
 				},
 			],
 		},
@@ -225,7 +209,7 @@ function getExtensionConfig(target, mode, env) {
 
 /**
  * @param { 'production' | 'development' | 'none' } mode
- * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean; squoosh?: boolean } | undefined } env
+ * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean } | undefined } env
  * @returns { WebpackConfig }
  */
 function getWebviewsConfig(mode, env) {
@@ -241,16 +225,11 @@ function getWebviewsConfig(mode, env) {
 						],
 						dangerouslyAllowCleanPatternsOutsideProject: true,
 						dry: false,
-				  }
+					}
 				: undefined,
 		),
 		new ForkTsCheckerPlugin({
 			async: false,
-			eslint: {
-				enabled: true,
-				files: path.join(basePath, '**', '*.ts'),
-				// options: { cache: true },
-			},
 			formatter: 'basic',
 			typescript: {
 				configFile: path.join(basePath, 'tsconfig.json'),
@@ -287,7 +266,7 @@ function getWebviewsConfig(mode, env) {
 
 	const imageGeneratorConfig = getImageMinimizerConfig(mode, env);
 
-	if (mode !== 'production') {
+	if (mode === 'production') {
 		plugins.push(
 			new ImageMinimizerPlugin({
 				deleteOriginalAssets: true,
@@ -331,7 +310,7 @@ function getWebviewsConfig(mode, env) {
 									// keepNames: true,
 									target: 'es2020',
 								},
-						  }
+							}
 						: {
 								compress: {
 									drop_debugger: true,
@@ -346,7 +325,7 @@ function getWebviewsConfig(mode, env) {
 									// keep_classnames: true,
 									module: true,
 								},
-						  },
+							},
 				),
 				new ImageMinimizerPlugin({
 					deleteOriginalAssets: true,
@@ -369,7 +348,7 @@ function getWebviewsConfig(mode, env) {
 									target: 'es2020',
 									tsconfigRaw: resolveTSConfig(path.join(basePath, 'tsconfig.json')),
 								},
-						  }
+							}
 						: {
 								loader: 'ts-loader',
 								options: {
@@ -377,7 +356,7 @@ function getWebviewsConfig(mode, env) {
 									experimentalWatchApi: true,
 									transpileOnly: true,
 								},
-						  },
+							},
 				},
 				{
 					test: /\.scss$/,
@@ -462,49 +441,32 @@ function getCspHtmlPlugin(mode, env) {
 
 /**
  * @param { 'production' | 'development' | 'none' } mode
- * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean; squoosh?: boolean } | undefined } env
+ * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean } | undefined } env
  * @returns { ImageMinimizerPlugin.Generator<any> }
  */
 function getImageMinimizerConfig(mode, env) {
 	/** @type ImageMinimizerPlugin.Generator<any> */
 	// @ts-ignore
-	return env.squoosh
-		? {
-				type: 'asset',
-				implementation: ImageMinimizerPlugin.squooshGenerate,
-				options: {
-					encodeOptions: {
-						webp: {
-							// quality: 90,
-							lossless: 1,
-						},
-					},
+	return {
+		type: 'asset',
+		implementation: ImageMinimizerPlugin.sharpGenerate,
+		options: {
+			encodeOptions: {
+				webp: {
+					lossless: true,
+					quality: 100,
+					effort: mode === 'production' ? 6 : 0,
 				},
-		  }
-		: {
-				type: 'asset',
-				implementation: ImageMinimizerPlugin.imageminGenerate,
-				options: {
-					plugins: [
-						[
-							'imagemin-webp',
-							{
-								lossless: true,
-								nearLossless: 0,
-								quality: 100,
-								method: mode === 'production' ? 4 : 0,
-							},
-						],
-					],
-				},
-		  };
+			},
+		},
+	};
 }
 
 /**
  * @param { string } name
  * @param { boolean } plus
  * @param { 'production' | 'development' | 'none' } mode
- * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean; squoosh?: boolean } | undefined } env
+ * @param {{ analyzeBundle?: boolean; analyzeDeps?: boolean; esbuild?: boolean } | undefined } env
  * @returns { HtmlPlugin }
  */
 function getHtmlPlugin(name, plus, mode, env) {
@@ -526,7 +488,7 @@ function getHtmlPlugin(name, plus, mode, env) {
 						removeStyleLinkTypeAttributes: true,
 						keepClosingSlash: true,
 						minifyCSS: true,
-				  }
+					}
 				: false,
 	});
 }
@@ -583,7 +545,7 @@ class InlineChunkHtmlPlugin {
  * @returns { string }
  */
 function resolveTSConfig(configFile) {
-	const result = spawnSync('yarn', ['tsc', `-p ${configFile}`, '--showConfig'], {
+	const result = spawnSync('npx', ['tsc', '-p', configFile, '--showConfig'], {
 		cwd: __dirname,
 		encoding: 'utf8',
 		shell: true,

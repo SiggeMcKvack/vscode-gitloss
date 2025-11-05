@@ -115,7 +115,11 @@ export class RebaseStatusNode extends ViewNode<ViewsWithCommits> {
 }
 
 export class RebaseCommitNode extends ViewRefNode<ViewsWithCommits, GitRevisionReference> {
-	constructor(view: ViewsWithCommits, parent: ViewNode, public readonly commit: GitCommit) {
+	constructor(
+		view: ViewsWithCommits,
+		parent: ViewNode,
+		public readonly commit: GitCommit,
+	) {
 		super(commit.getGitUri(), view, parent);
 	}
 

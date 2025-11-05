@@ -305,8 +305,8 @@ export class ViewCommands {
 			node instanceof ViewRefNode
 				? node?.ref
 				: node instanceof BranchTrackingStatusNode
-				? node.branch
-				: undefined;
+					? node.branch
+					: undefined;
 		if (from == null) {
 			const branch = await this.container.git.getBranch(
 				node?.repoPath ?? this.container.git.getBestRepository()?.uri,
@@ -367,10 +367,10 @@ export class ViewCommands {
 											id: remote.provider.id,
 											name: remote.provider.name,
 											domain: remote.provider.domain,
-									  }
+										}
 									: undefined,
 							url: remote.url,
-					  }
+						}
 					: undefined,
 			branch: {
 				name: node.branch.name,
@@ -386,8 +386,8 @@ export class ViewCommands {
 			node instanceof ViewRefNode
 				? node?.ref
 				: node instanceof BranchTrackingStatusNode
-				? node.branch
-				: undefined;
+					? node.branch
+					: undefined;
 		if (from == null) {
 			const branch = await this.container.git.getBranch(
 				node?.repoPath ?? this.container.git.getBestRepository()?.uri,
@@ -1145,7 +1145,7 @@ export class ViewCommands {
 								(await node.commit.getPreviousSha()) ?? GitRevision.deletedOrMissing,
 								node.commit.file.path,
 								node.commit.repoPath,
-						  )
+							)
 						: Container.instance.git.getRevisionUri(node.uri);
 			}
 		}

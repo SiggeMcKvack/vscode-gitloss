@@ -40,7 +40,7 @@ export class ShowCommitsInViewCommand extends ActiveEditorCommand {
 								gitUri,
 								editor.selection,
 								editor.document.getText(),
-						  )
+							)
 						: await this.container.git.getBlameForRange(gitUri, editor.selection);
 					if (blame === undefined) {
 						return Messages.showFileNotUnderSourceControlWarningMessage('Unable to find commits');
