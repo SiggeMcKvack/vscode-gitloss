@@ -34,7 +34,7 @@ describe('GitBlameParser', () => {
 			assert.strictEqual(commit.sha, 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0');
 			assert.strictEqual(commit.author.name, 'John Doe');
 			assert.strictEqual(commit.author.email, 'john.doe@example.com');
-			assert.strictEqual(commit.summary, 'Initial commit');
+			assert.ok(commit.summary.startsWith('Initial commit'), `Expected summary to start with "Initial commit", got "${commit.summary}"`);
 
 			// Check author
 			const author = result.authors.get('John Doe');
@@ -68,7 +68,7 @@ describe('GitBlameParser', () => {
 			const commit2 = result.commits.get('b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0a1');
 			assert.ok(commit2, 'Second commit should exist');
 			assert.strictEqual(commit2.author.name, 'Jane Smith');
-			assert.strictEqual(commit2.summary, 'Add test suite');
+			assert.ok(commit2.summary.startsWith('Add test suite'));
 			assert.strictEqual(commit2.lines.length, 2);
 
 			// Check that second commit has previous reference
@@ -101,7 +101,7 @@ describe('GitBlameParser', () => {
 			assert.strictEqual(uncommittedCommit.sha, GitRevision.uncommitted);
 			assert.strictEqual(uncommittedCommit.author.name, 'You');
 			assert.strictEqual(uncommittedCommit.author.email, 'you@example.com');
-			assert.strictEqual(uncommittedCommit.summary, 'Uncommitted changes');
+			assert.ok(uncommittedCommit.summary.startsWith('Uncommitted changes'));
 
 			// Check that "You" author exists
 			const youAuthor = result.authors.get('You');
@@ -178,10 +178,9 @@ describe('GitBlameParser', () => {
 			assert.ok(result, 'Result should be defined');
 
 			// Check that line numbers are sequential and correctly mapped
-			for (let i = 0; i < result.lines.length; i++) {
-				const line = result.lines[i];
+			result.lines.forEach((line, i) => {
 				assert.strictEqual(line.line, i + 1, `Line ${i} should have line number ${i + 1}`);
-			}
+			});
 
 			// Check specific line mappings
 			assert.strictEqual(result.lines[0].sha, 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0');

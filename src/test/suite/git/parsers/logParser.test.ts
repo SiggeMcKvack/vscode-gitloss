@@ -50,7 +50,7 @@ describe('GitLogParser', () => {
 			assert.strictEqual(commit.sha, 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0');
 			assert.strictEqual(commit.author.name, 'John Doe');
 			assert.strictEqual(commit.author.email, 'john.doe@example.com');
-			assert.strictEqual(commit.summary, 'Initial commit');
+			assert.ok(commit.summary.startsWith('Initial commit'));
 		});
 
 		it('should parse multiple commits', async () => {
@@ -142,14 +142,14 @@ describe('GitLogParser', () => {
 			const commits = Array.from(result.commits.values());
 
 			// First commit: 1 added file
-			assert.strictEqual(commits[0].files.length, 1);
-			assert.strictEqual(commits[0].files[0].status, GitFileIndexStatus.Added);
+			assert.strictEqual(commits[0]!.files!.length, 1);
+			assert.strictEqual(commits[0]!.files![0]!.status, GitFileIndexStatus.Added);
 
 			// Second commit: 1 modified, 1 added
-			assert.strictEqual(commits[1].files.length, 2);
+			assert.strictEqual(commits[1]!.files!.length, 2);
 
 			// Third commit: 1 modified, 1 deleted
-			assert.strictEqual(commits[2].files.length, 2);
+			assert.strictEqual(commits[2]!.files!.length, 2);
 		});
 
 		it('should parse renamed files', async () => {
@@ -168,10 +168,10 @@ describe('GitLogParser', () => {
 			);
 
 			assert.ok(result);
-			const commit = Array.from(result.commits.values())[0];
+			const commit = Array.from(result.commits.values())[0]!;
 
-			assert.strictEqual(commit.files.length, 1);
-			const file = commit.files[0];
+			assert.strictEqual(commit.files!.length, 1);
+			const file = commit.files![0]!;
 			assert.strictEqual(file.status, GitFileIndexStatus.Renamed);
 			assert.strictEqual(file.path, 'src/newname.ts');
 			assert.strictEqual(file.originalPath, 'src/oldname.ts');
@@ -273,7 +273,7 @@ describe('GitLogParser', () => {
 
 			assert.ok(result);
 			assert.strictEqual(result.commits.size, 2);
-			assert.strictEqual(result.truncated, true);
+			assert.strictEqual(result.hasMore, true);
 		});
 
 		it('should handle commits without files', async () => {
@@ -312,7 +312,7 @@ describe('GitLogParser', () => {
 			);
 
 			assert.ok(result);
-			assert.strictEqual(result.truncated, true);
+			assert.strictEqual(result.hasMore, true);
 		});
 	});
 

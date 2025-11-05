@@ -10999,7 +10999,7 @@
 		"build": "webpack --mode development",
 		"build:extension": "webpack --mode development --config-name extension",
 		"build:webviews": "webpack --mode development --config-name webviews",
-		"build:tests": "tsc -p tsconfig.test.json && tsc-alias -p tsconfig.test.json",
+		"build:tests": "tsc -p tsconfig.test.json && tsc-alias -p tsconfig.test.json && node -e \"require('fs').cpSync('src/test/fixtures', 'out/test/fixtures', {recursive: true})\"",
 		"-build:tests": "webpack -c webpack.config.test.js --mode development",
 		"bundle": "webpack --mode production",
 		"clean": "npx rimraf dist out .vscode-test .vscode-test-web .eslintcache* tsconfig*.tsbuildinfo coverage .nyc_output",

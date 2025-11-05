@@ -23,6 +23,16 @@ export function createMockGitUser(overrides?: Partial<GitUser>): GitUser {
 export function createMockContainer(overrides?: Partial<Container>): Partial<Container> {
 	const container: Partial<Container> = {
 		// Add minimal container properties needed for tests
+		CommitShaFormatting: {
+			length: 7,
+			reset: () => {},
+		},
+		CommitDateFormatting: {
+			dateSource: 'authored' as any,
+			dateStyle: 'relative' as any,
+			dateFormat: 'MMMM Do, YYYY h:mma',
+			reset: () => {},
+		},
 		...overrides,
 	};
 	return container;
