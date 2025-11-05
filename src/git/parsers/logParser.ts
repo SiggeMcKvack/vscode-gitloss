@@ -181,7 +181,6 @@ export class GitLogParser {
 
 				if (fieldCount === keys.length) {
 					fieldCount = 0;
-					field = fields.next();
 
 					options?.parseEntry?.(fields, entry);
 					yield entry;
@@ -259,6 +258,8 @@ export class GitLogParser {
 							field = fields.next();
 							file.originalPath = field.value;
 						}
+
+						files.push(file);
 					}
 				}
 
