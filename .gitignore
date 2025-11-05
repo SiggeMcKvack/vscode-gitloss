@@ -8,5 +8,8 @@ node_modules
 images/settings
 gitlens-*.vsix
 tsconfig*.tsbuildinfo
+coverage
+.nyc_output
+*.lcov
 .claude/settings.local.json
 CLAUDE.md

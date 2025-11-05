@@ -181,7 +181,6 @@ export class GitLogParser {
 
 				if (fieldCount === keys.length) {
 					fieldCount = 0;
-					field = fields.next();
 
 					options?.parseEntry?.(fields, entry);
 					yield entry;
@@ -230,13 +229,14 @@ export class GitLogParser {
 			let files: ParsedEntryFile[];
 			let fields: IterableIterator<string>;
 
-			let first = true;
 			for (let record of records) {
-				if (first) {
-					first = false;
-					// Fix the first record (since it only has 3 nulls)
-					record = record.slice(3);
+				// Remove leading null bytes (format has \0\0\0 prefix)
+				while (record.startsWith('\0')) {
+					record = record.slice(1);
 				}
+
+				// Skip empty records
+				if (record.length === 0) continue;
 
 				entry = {} as any;
 				files = [];
@@ -253,17 +253,24 @@ export class GitLogParser {
 					} else {
 						const file: ParsedEntryFile = { status: field.value.trim(), path: undefined! };
 						field = fields.next();
+						if (field.done) break;
 						file.path = field.value;
 
 						if (file.status[0] === 'R' || file.status[0] === 'C') {
 							field = fields.next();
+							if (field.done) break;
 							file.originalPath = field.value;
 						}
+
+						files.push(file);
 					}
 				}
 
-				entry.files = files;
-				yield entry;
+				// Only yield if we parsed at least one field
+				if (fieldCount > 0) {
+					entry.files = files;
+					yield entry;
+				}
 			}
 		}
 
@@ -572,7 +579,7 @@ export class GitLogParser {
 			count: i,
 			limit: limit,
 			range: range,
-			hasMore: Boolean(truncationCount && i > truncationCount && truncationCount !== 1),
+			hasMore: Boolean(truncationCount && i > truncationCount),
 		};
 		return log;
 	}

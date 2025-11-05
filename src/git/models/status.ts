@@ -332,9 +332,11 @@ export class GitStatusFile implements GitFile {
 		if (x != null && y != null) {
 			switch (x + y) {
 				case '??':
+					this.indexStatus = GitFileIndexStatus.Untracked;
 					this.workingTreeStatus = GitFileWorkingTreeStatus.Untracked;
 					break;
 				case '!!':
+					this.indexStatus = GitFileIndexStatus.Ignored;
 					this.workingTreeStatus = GitFileWorkingTreeStatus.Ignored;
 					break;
 				case 'AA':
@@ -382,10 +384,10 @@ export class GitStatusFile implements GitFile {
 
 			switch (y) {
 				case 'A':
-					this.workingTreeStatus = GitFileWorkingTreeStatus.Modified;
+					this.workingTreeStatus = GitFileWorkingTreeStatus.Added;
 					break;
 				case 'D':
-					this.workingTreeStatus = GitFileWorkingTreeStatus.Modified;
+					this.workingTreeStatus = GitFileWorkingTreeStatus.Deleted;
 					break;
 				case 'M':
 					this.workingTreeStatus = GitFileWorkingTreeStatus.Modified;

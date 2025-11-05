@@ -21,7 +21,7 @@ export function countStringLength(source: string[]): number {
 }
 
 export function countUniques<T>(source: T[], accessor: (item: T) => string): Record<string, number> {
-	const uniqueCounts = Object.create(null) as Record<string, number>;
+	const uniqueCounts = {} as Record<string, number>;
 	for (const item of source) {
 		const value = accessor(item);
 		uniqueCounts[value] = (uniqueCounts[value] ?? 0) + 1;
@@ -73,7 +73,7 @@ export function groupBy<T>(source: T[], groupingKey: (item: T) => string): Recor
 			}
 			return groupings;
 		},
-		Object.create(null) as Record<string, T[]>,
+		{} as Record<string, T[]>,
 	);
 }
 

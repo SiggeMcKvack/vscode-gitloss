@@ -1,0 +1,24 @@
+0000000000000000000000000000000000000000 1 1 1
+author You
+author-mail <you@example.com>
+author-time 1609632000
+author-tz -0500
+committer You
+committer-mail <you@example.com>
+committer-time 1609632000
+committer-tz -0500
+summary Uncommitted changes
+filename src/test.ts
+	// Uncommitted change
+a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0 2 2 1
+author John Doe
+author-mail <john.doe@example.com>
+author-time 1609459200
+author-tz -0500
+committer John Doe
+committer-mail <john.doe@example.com>
+committer-time 1609459200
+committer-tz -0500
+summary Initial commit
+filename src/test.ts
+	import * as assert from 'assert';

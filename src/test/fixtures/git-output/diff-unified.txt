@@ -1,0 +1,15 @@
+@@ -1,5 +1,8 @@
+ line 1
+ line 2
+-line 3
++line 3 modified
++line 3.5 added
+ line 4
+ line 5
++line 6 added
++line 7 added
+@@ -15,3 +18,4 @@
+ line 15
+ line 16
+ line 17
++line 18 added

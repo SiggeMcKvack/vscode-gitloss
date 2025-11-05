@@ -1,0 +1,22 @@
+</f>
+<r> a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0
+<a> John Doe
+<e> john.doe@example.com
+<d> 1609459200
+<n> John Doe
+<m> john.doe@example.com
+<c> 1609459200
+<s>
+Add complex feature
+
+This commit adds a complex feature that requires
+multiple lines of explanation.
+
+- Feature 1
+- Feature 2
+- Feature 3
+</s>
+<f>
+
+A	src/feature.ts
+</f>

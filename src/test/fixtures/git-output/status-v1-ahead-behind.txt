@@ -1,0 +1,6 @@
+## main...origin/main [ahead 2, behind 3]
+ M src/modified.ts
+A  src/added.ts
+D  src/deleted.ts
+R  src/old-name.ts -> src/new-name.ts
+?? src/untracked.ts
