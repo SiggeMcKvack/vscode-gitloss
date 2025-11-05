@@ -196,10 +196,11 @@ describe('GitLogParser', () => {
 			const commit = Array.from(result.commits.values())[0];
 
 			assert.ok(commit.summary.includes('Add complex feature'));
-			assert.ok(commit.summary.includes('multiple lines'));
-			assert.ok(commit.summary.includes('Feature 1'));
-			assert.ok(commit.summary.includes('Feature 2'));
-			assert.ok(commit.summary.includes('Feature 3'));
+			assert.ok(commit.message);
+			assert.ok(commit.message.includes('multiple lines'));
+			assert.ok(commit.message.includes('Feature 1'));
+			assert.ok(commit.message.includes('Feature 2'));
+			assert.ok(commit.message.includes('Feature 3'));
 		});
 
 		it('should parse parent commits', async () => {
