@@ -572,7 +572,7 @@ export class GitLogParser {
 			count: i,
 			limit: limit,
 			range: range,
-			hasMore: Boolean(truncationCount && i > truncationCount && truncationCount !== 1),
+			hasMore: Boolean(truncationCount && i > truncationCount),
 		};
 		return log;
 	}
